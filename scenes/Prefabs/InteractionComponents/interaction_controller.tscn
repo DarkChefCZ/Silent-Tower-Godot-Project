@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpu7qu6dycam5"]
+
+[ext_resource type="Script" uid="uid://c3wmmlbbhdkl" path="res://scripts/InteractionScripts/PhysicsInteractionController.gd" id="1_gg2ik"]
+
+[node name="InteractionController" type="Node"]
+script = ExtResource("1_gg2ik")
+NameOfInteractionComponentNode = "interaction_component"

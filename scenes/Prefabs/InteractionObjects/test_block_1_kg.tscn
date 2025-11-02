@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://6vsowbhcia7k"]
+
+[ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="1_kqpry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ruod"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fao2g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0vy0"]
+
+[node name="TestBlock_1kg" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_1ruod")
+mesh = SubResource("BoxMesh_fao2g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_a0vy0")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_kqpry")]
+object_ref = NodePath("..")
