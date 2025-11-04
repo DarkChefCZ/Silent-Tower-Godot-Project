@@ -1,15 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://8wuuyqhvgo6v"]
+[gd_scene load_steps=14 format=3 uid="uid://8wuuyqhvgo6v"]
 
 [ext_resource type="Script" uid="uid://bn0nmww70ctr2" path="res://scripts/3DControllerFPS.gd" id="1_cyb0k"]
 [ext_resource type="Texture2D" uid="uid://dpj47kqqaff1u" path="res://assets/cursors/base_cursor.png" id="2_ig8p6"]
 [ext_resource type="PackedScene" uid="uid://bpu7qu6dycam5" path="res://scenes/Prefabs/InteractionComponents/interaction_controller.tscn" id="2_wabmd"]
 [ext_resource type="Texture2D" uid="uid://dwkx3ep42so3y" path="res://assets/cursors/can_interact_cursor.png" id="4_wpmm3"]
 [ext_resource type="Texture2D" uid="uid://i18u1txnhmgf" path="res://assets/cursors/interacting_cursor.png" id="5_n1p3x"]
+[ext_resource type="Shader" uid="uid://dsogovtq51xlw" path="res://shaders/note_overlay_fade.gdshader" id="6_iba7y"]
+[ext_resource type="AudioStream" uid="uid://ckkx2h0a87f8b" path="res://assets/sounds/footstep00.ogg" id="7_wd0ba"]
+[ext_resource type="AudioStream" uid="uid://6lfdcguuyung" path="res://assets/sounds/footstep01.ogg" id="8_rjgie"]
+[ext_resource type="AudioStream" uid="uid://cf5eu6gp7rdgs" path="res://assets/sounds/footstep02.ogg" id="9_x1ndo"]
+[ext_resource type="AudioStream" uid="uid://be418nxr31jjv" path="res://assets/sounds/footstep03.ogg" id="10_v8ent"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tl5kw"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cyb0k"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g36bq"]
+shader = ExtResource("6_iba7y")
+shader_parameter/rect_width_px = 960.0
+shader_parameter/fade_width_px = 200.0
+shader_parameter/fade_strength = 0.800000038
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("interaction_controller")]
 script = ExtResource("1_cyb0k")
@@ -17,6 +28,7 @@ EnableWalking = true
 EnablePhysicsInteraction = true
 CameraMinLookY = -80
 interaction_controller = NodePath("InteractionController")
+footstep_ses_paths = [NodePath("Audio/Footstep00"), NodePath("Audio/Footstep01"), NodePath("Audio/Footstep02"), NodePath("Audio/Footstep03")]
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5008013, 0)
@@ -114,3 +126,77 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("5_n1p3x")
 stretch_mode = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
+
+[node name="NoteTextOverlay" type="Control" parent="GUI/CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BlackOverlay" type="ColorRect" parent="GUI/CanvasLayer/NoteTextOverlay"]
+material = SubResource("ShaderMaterial_g36bq")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="GUI/CanvasLayer/NoteTextOverlay"]
+layout_mode = 1
+anchor_left = 0.625
+anchor_top = 0.037
+anchor_right = 1.0
+anchor_bottom = 0.96300006
+offset_top = 0.040000916
+offset_right = -20.000366
+offset_bottom = -0.040039063
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="NoteContentDisplay" type="RichTextLabel" parent="GUI/CanvasLayer/NoteTextOverlay/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Test text ;p; lol"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Audio" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7968737, 0)
+
+[node name="Footstep00" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("7_wd0ba")
+volume_db = -40.0
+
+[node name="Footstep01" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("8_rjgie")
+volume_db = -40.0
+
+[node name="Footstep02" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("9_x1ndo")
+volume_db = -40.0
+
+[node name="Footstep03" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("10_v8ent")
+volume_db = -40.0

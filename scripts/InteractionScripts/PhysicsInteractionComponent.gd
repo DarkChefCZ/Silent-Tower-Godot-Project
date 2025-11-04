@@ -19,6 +19,8 @@ var player_hand: Marker3D
 @export_group("Default object Settings")
 @export var interaction_strength: float = 5
 @export var throw_strength: float = 20
+@export var impact_se: AudioStreamOggVorbis
+@export var contact_velocity_threshold: float = 0.1
 
 @export_group("Basic object settings")
 @export var object_sensitivity: float = 0.001
@@ -30,6 +32,11 @@ var player_hand: Marker3D
 @export_group("Switch-Wheel object Settings")
 @export var nodes_that_switch_affects: Array[String]
 @export var wheel_movement_sensitivity: float = 0.2
+
+@export_group("Note object Settings")
+@export var note_content: String
+@export var pick_up_se: AudioStreamOggVorbis
+@export var put_down_se: AudioStreamOggVorbis
 
 # --- --- ---
 
@@ -47,8 +54,23 @@ var camera: Camera3D
 var previous_mouse_position: Vector2
 var wheel_rotation: float = 0.0
 
+var primary_audio_player: AudioStreamPlayer3D
+var secondary_audio_player: AudioStreamPlayer3D
+var last_velocity: Vector3 = Vector3.ZERO
+
 func _ready() -> void:
+	
+	primary_audio_player = AudioStreamPlayer3D.new()
+	add_child(primary_audio_player)
+	secondary_audio_player = AudioStreamPlayer3D.new()
+	add_child(secondary_audio_player)
+	
 	match interaction_type:
+		InteractionType.DEFAULT:
+			if object_ref.has_signal("body_entered"):
+				object_ref.connect("body_entered", Callable(self, "_on_body_entered"))
+				object_ref.contact_monitor = true
+				object_ref.max_contacts_reported = 1
 		InteractionType.SWITCH:
 			for node in nodes_that_switch_affects:
 				nodes_to_affect.append(get_tree().get_current_scene().find_child(str(node), true, false))
@@ -68,6 +90,15 @@ func _ready() -> void:
 			starting_rotation = object_ref.rotation.z
 			maxium_rotation = starting_rotation + deg_to_rad(maxium_rotation)
 			camera = get_tree().get_current_scene().find_child("Camera3D", true, false)
+		InteractionType.NOTE:
+			note_content = note_content.replace("\\n", "\n")
+
+func _physics_process(_delta: float) -> void:
+	match interaction_type:
+		InteractionType.DEFAULT:
+			if object_ref:
+				last_velocity = object_ref.linear_velocity
+
 
 # Runs once when the player FIRST clicks on an object to interact with
 func preInteract(hand: Marker3D) -> void:
@@ -192,11 +223,23 @@ func calculate_cross_product(_mouse_position: Vector2) -> float:
 
 func _collect_note() -> void:
 	var mesh = get_parent().find_child("MeshInstance3D", true, false)
-	
+	can_interact = false
 	
 	if mesh:
 		mesh.layers &= ~(1 << 0)
 		mesh.layers |= 1 << 1
 	
+	if pick_up_se:
+		primary_audio_player.stream = pick_up_se
+		primary_audio_player.play()
 	emit_signal("note_collected", get_parent())
-	
+
+func _play_sound_effect(_visible: bool, _interact: bool) -> void:
+	if impact_se:
+		primary_audio_player.stream = impact_se
+		primary_audio_player.play()
+
+func _on_body_entered(_node: Node) -> void:
+	var impact_strength = (last_velocity - object_ref.linear_velocity).length()
+	if impact_strength > contact_velocity_threshold:
+		_play_sound_effect(true, true)

@@ -5,10 +5,13 @@ extends Node
 @onready var hand: Marker3D = $"../Head/Camera3D/Hand"
 @onready var player_camera: Camera3D = $"../Head/Camera3D"
 @onready var control: Control = $"../GUI/ReticleLayer/Control"
-@onready var note_hand: Marker3D = %NoteHand
-@onready var note_storage: Node3D = $"../../TestNoteStorage"
 @onready var player: CharacterBody3D = $".."
 
+# Note onready
+@onready var note_hand: Marker3D = %NoteHand
+@onready var note_storage: Node3D = $"../../TestNoteStorage"
+@onready var note_text_overlay: Control = %NoteTextOverlay
+@onready var note_content_display: RichTextLabel = %NoteContentDisplay
 
 # Reticles
 @onready var default_reticle: TextureRect = $"../GUI/ReticleLayer/Control/DefaultReticle"
@@ -25,6 +28,7 @@ var last_potential_object: Object
 var interaction_component: Node
 var note_og_transform: Transform3D
 var note_og_rotation_x: float
+var is_note_overlay_display: bool = false
 
 func _ready() -> void:
 	ray_cast_3d.target_position.z = InteractableDistance
@@ -128,6 +132,7 @@ func changeReticle(reticleToggleVis: TextureRect) -> void:
 		child.visible = false
 	reticleToggleVis.visible = true
 
+var ic: Node
 func _on_note_collected(note: Node3D) -> void:
 	note_og_transform = note.transform
 	note_og_rotation_x = note.rotation_degrees.x
@@ -137,14 +142,25 @@ func _on_note_collected(note: Node3D) -> void:
 	note.position = Vector3.ZERO
 	note.rotation_degrees = Vector3(90.0, 15.0, 0.0)
 	player.EnableWalking = false
+	note_text_overlay.visible = true
+	is_note_overlay_display = true
+	ic = note.get_node_or_null(NameOfInteractionComponentNode)
+	note_content_display.bbcode_enabled = true
+	note_content_display.text = ic.note_content
 
 
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Secondary_mb"):
+func _input(_event: InputEvent) -> void:
+	if is_note_overlay_display and Input.is_action_just_pressed("Secondary_mb"):
+		note_text_overlay.visible = false
+		is_note_overlay_display = false
 		var children = note_hand.get_children()
 		for child in children:
+			if ic.put_down_se:
+				ic.secondary_audio_player.stream = ic.put_down_se
+				ic.secondary_audio_player.play()
+			
 			child.get_parent().remove_child(child)
 			note_storage.add_child(child)
 			child.transform = note_og_transform
@@ -154,4 +170,5 @@ func _input(event: InputEvent) -> void:
 				mesh.layers &= ~(1 << 1)
 				mesh.layers |= 1 << 0
 		player.EnableWalking = true
+		ic.can_interact = true
 	

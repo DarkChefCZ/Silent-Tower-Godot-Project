@@ -28,7 +28,8 @@ window/stretch/scale_mode="integer"
 folder_colors={
 "res://assets/": "yellow",
 "res://scenes/": "green",
-"res://scripts/": "purple"
+"res://scripts/": "purple",
+"res://shaders/": "pink"
 }
 
 [input]
