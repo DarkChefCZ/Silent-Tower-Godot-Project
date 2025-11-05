@@ -55,31 +55,7 @@ spot_attenuation = 2.0
 spot_angle = 25.0
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head/Camera3D"]
-remote_path = NodePath("../../SubViewportContainer/SubViewport/NoteCamera")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Head"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-canvas_cull_mask = 4293918722
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
-
-[node name="NoteCamera" type="Camera3D" parent="Head/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5008013, 0)
-cull_mask = 2
-fov = 90.0
-
-[node name="NoteHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/NoteCamera"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891, -0.3099913, -0.764)
+remote_path = NodePath("../../../SubViewportContainer/SubViewport/NoteCamera")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -200,3 +176,27 @@ volume_db = -40.0
 [node name="Footstep03" type="AudioStreamPlayer3D" parent="Audio"]
 stream = ExtResource("10_v8ent")
 volume_db = -40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918722
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="NoteCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5008013, 0)
+cull_mask = 2
+fov = 90.0
+
+[node name="NoteHand" type="Marker3D" parent="SubViewportContainer/SubViewport/NoteCamera"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.764)

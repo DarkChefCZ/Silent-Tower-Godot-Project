@@ -30,6 +30,8 @@ var note_og_transform: Transform3D
 var note_og_rotation_x: float
 var is_note_overlay_display: bool = false
 
+
+
 func _ready() -> void:
 	ray_cast_3d.target_position.z = InteractableDistance
 	hand.position.z = InteractableDistance
@@ -56,6 +58,8 @@ func _process(_delta: float) -> void:
 			match interaction_component.interaction_type:
 				interaction_component.InteractionType.DOOR:
 					maxInteractionDistance = 3.0
+				interaction_component.InteractionType.NOTE:
+					maxInteractionDistance = 1.0
 				_:
 					maxInteractionDistance = 2.0
 			
@@ -142,6 +146,7 @@ func _on_note_collected(note: Node3D) -> void:
 	note.position = Vector3.ZERO
 	note.rotation_degrees = Vector3(90.0, 15.0, 0.0)
 	player.EnableWalking = false
+	player.can_move_camera = false
 	note_text_overlay.visible = true
 	is_note_overlay_display = true
 	ic = note.get_node_or_null(NameOfInteractionComponentNode)
@@ -153,6 +158,7 @@ func _on_note_collected(note: Node3D) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if is_note_overlay_display and Input.is_action_just_pressed("Secondary_mb"):
+		ic.holding_note = false
 		note_text_overlay.visible = false
 		is_note_overlay_display = false
 		var children = note_hand.get_children()
@@ -160,7 +166,6 @@ func _input(_event: InputEvent) -> void:
 			if ic.put_down_se:
 				ic.secondary_audio_player.stream = ic.put_down_se
 				ic.secondary_audio_player.play()
-			
 			child.get_parent().remove_child(child)
 			note_storage.add_child(child)
 			child.transform = note_og_transform
@@ -170,5 +175,6 @@ func _input(_event: InputEvent) -> void:
 				mesh.layers &= ~(1 << 1)
 				mesh.layers |= 1 << 0
 		player.EnableWalking = true
+		player.can_move_camera = true
 		ic.can_interact = true
 	

@@ -48,6 +48,7 @@ var input_dir : Vector2
 var last_bob_position_x: float = 0.0
 var last_bob_direction: int = 0
 var footstep_ses: Array = []
+var can_move_camera: bool = true
 
 # ---- ACTUAL CODE ----
 func _ready() -> void:
@@ -68,10 +69,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if interaction_controller.isCameraLocked():
 			return
 	
-	if event is InputEventMouseMotion:
+	
+	if can_move_camera and event is InputEventMouseMotion:
 			head.rotate_y(-event.relative.x * SENSITIVITY)
 			camera_3d.rotate_x(-event.relative.y * SENSITIVITY)
 			camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(CameraMinLookY), deg_to_rad(CameraMaxLookY))
+	else:
+		return
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

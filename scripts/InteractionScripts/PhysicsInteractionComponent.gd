@@ -54,11 +54,24 @@ var camera: Camera3D
 var previous_mouse_position: Vector2
 var wheel_rotation: float = 0.0
 
+# Note specific vars
+var holding_note: bool = false
+var float_height: float = 0.075
+var float_speed: float = 0.5
+var start_y: float = 0.0
+var float_progress: float = 0.0
+
 var primary_audio_player: AudioStreamPlayer3D
 var secondary_audio_player: AudioStreamPlayer3D
 var last_velocity: Vector3 = Vector3.ZERO
+var mesh: MeshInstance3D
+
 
 func _ready() -> void:
+	
+	mesh = object_ref.find_child("MeshInstance3D", true, false)
+	if mesh:
+		start_y = mesh.position.y
 	
 	primary_audio_player = AudioStreamPlayer3D.new()
 	add_child(primary_audio_player)
@@ -93,11 +106,20 @@ func _ready() -> void:
 		InteractionType.NOTE:
 			note_content = note_content.replace("\\n", "\n")
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match interaction_type:
 		InteractionType.DEFAULT:
 			if object_ref:
 				last_velocity = object_ref.linear_velocity
+		
+		
+	if object_ref and holding_note:
+				float_progress += float_speed * delta
+				float_progress = fmod(float_progress, 2.0)
+				var t = float_progress
+				if t > 1.0:
+					t = 2.0 - t
+				mesh.position.z = lerp(start_y - float_height, start_y + float_height, t)
 
 
 # Runs once when the player FIRST clicks on an object to interact with
@@ -222,7 +244,6 @@ func calculate_cross_product(_mouse_position: Vector2) -> float:
 	return cross_product
 
 func _collect_note() -> void:
-	var mesh = get_parent().find_child("MeshInstance3D", true, false)
 	can_interact = false
 	
 	if mesh:
@@ -232,6 +253,7 @@ func _collect_note() -> void:
 	if pick_up_se:
 		primary_audio_player.stream = pick_up_se
 		primary_audio_player.play()
+	holding_note = true
 	emit_signal("note_collected", get_parent())
 
 func _play_sound_effect(_visible: bool, _interact: bool) -> void:
