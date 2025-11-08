@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgj76c22s1evx"]
+[gd_scene load_steps=23 format=3 uid="uid://bgj76c22s1evx"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_rvaov"]
 [ext_resource type="PackedScene" uid="uid://d32vyv7fdu8sr" path="res://scenes/Prefabs/TestInteractionObjects/testdoor.tscn" id="2_wa5q0"]
@@ -6,6 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://6vsowbhcia7k" path="res://scenes/Prefabs/TestInteractionObjects/test_block_1_kg.tscn" id="4_gd42f"]
 [ext_resource type="PackedScene" uid="uid://6ghc7qqy1rq7" path="res://scenes/Prefabs/TestInteractionObjects/testwheel.tscn" id="5_eg032"]
 [ext_resource type="PackedScene" uid="uid://7m30qxnedqom" path="res://scenes/Prefabs/TestInteractionObjects/test_note.tscn" id="6_ka0q3"]
+[ext_resource type="PackedScene" uid="uid://dy65u71dskp5a" path="res://assets/models/AntennaOperationPodiumLarge.gltf" id="7_ri4w8"]
+[ext_resource type="PackedScene" uid="uid://c4es4axlhssa3" path="res://assets/models/AntennaOperationPodiumSmall.gltf" id="8_8juaq"]
+[ext_resource type="PackedScene" uid="uid://uh140rbd0bal" path="res://assets/models/big_switch_base.gltf" id="9_3kijf"]
+[ext_resource type="PackedScene" uid="uid://ffmdbok5pm2c" path="res://assets/models/big_switch.gltf" id="10_jvm3s"]
+[ext_resource type="PackedScene" uid="uid://bisbb367ny6w1" path="res://assets/models/medium_wave_wheel.gltf" id="11_tilpl"]
+[ext_resource type="PackedScene" uid="uid://cenawgusjgb2w" path="res://assets/models/panel_display.gltf" id="12_dndow"]
+[ext_resource type="PackedScene" uid="uid://dhylt3f6jbv7b" path="res://assets/models/panel_switch.gltf" id="13_t8d5o"]
+[ext_resource type="PackedScene" uid="uid://bkp103po0hd87" path="res://assets/models/small_wave_wheel.gltf" id="14_3747l"]
+[ext_resource type="PackedScene" uid="uid://cv0iedr2apm6g" path="res://assets/models/padlock.gltf" id="15_3kijf"]
+[ext_resource type="PackedScene" uid="uid://6ikg6afxjfak" path="res://assets/models/locker_panel_box.gltf" id="16_jvm3s"]
+[ext_resource type="PackedScene" uid="uid://csajl22h5k625" path="res://scenes/Prefabs/InteractionObjects/medium_valve.tscn" id="17_jvm3s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wa5q0"]
 
@@ -119,3 +130,38 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.3
 
 [node name="TestNote" parent="TestNoteStorage" instance=ExtResource("6_ka0q3")]
 transform = Transform3D(0.25, 0, 0, 0, -1.0927847e-08, -0.25, 0, 0.25, -1.0927847e-08, 0, 0, 0)
+
+[node name="DemoBlockbenchModels" type="Node3D" parent="."]
+
+[node name="blockbench_export" parent="DemoBlockbenchModels" instance=ExtResource("7_ri4w8")]
+transform = Transform3D(-0.6, 0, -5.2453668e-08, 0, 0.6, 0, 5.2453668e-08, 0, -0.6, 0.231614, -0.00085061044, -10.614134)
+
+[node name="blockbench_export2" parent="DemoBlockbenchModels" instance=ExtResource("8_8juaq")]
+transform = Transform3D(-0.55244195, 0, 0.2341109, 0, 0.668, 0, -0.2341109, 0, -0.55244195, 2.0566382, -0.07874447, -10.693565)
+
+[node name="blockbench_export3" parent="DemoBlockbenchModels" instance=ExtResource("9_3kijf")]
+transform = Transform3D(-0.002586456, 0.0038721384, 0.1499277, 0.094522394, 0.11646297, -0.0013772151, -0.1164424, 0.09445309, -0.0044482006, -0.3810927, 1.0077882, -10.508888)
+
+[node name="blockbench_export4" parent="DemoBlockbenchModels" instance=ExtResource("10_jvm3s")]
+transform = Transform3D(-5.0955196e-09, 4.1262704e-09, 0.15, 0.09439806, 0.116571896, 0, -0.116571896, 0.09439806, -6.5567085e-09, -0.38223937, 0.99759257, -10.509475)
+
+[node name="blockbench_export5" parent="DemoBlockbenchModels" instance=ExtResource("11_tilpl")]
+transform = Transform3D(0.25, 0, 0, 0, 0.19428648, -0.1573301, 0, 0.1573301, 0.19428648, 0.07772228, 1.0916389, -10.641367)
+
+[node name="blockbench_export6" parent="DemoBlockbenchModels" instance=ExtResource("12_dndow")]
+transform = Transform3D(0.24972492, 0.007378349, 0.009111502, 0, 0.19428648, -0.1573301, -0.011724313, 0.15715699, 0.19407271, -0.4040786, 1.2310637, -10.795011)
+
+[node name="blockbench_export7" parent="DemoBlockbenchModels" instance=ExtResource("13_t8d5o")]
+transform = Transform3D(0.036956526, -0.02829765, 0.09016137, 0.06403155, 0.08729528, 0, -0.07703415, 0.058985125, 0.043254208, 2.0365672, 0.89114463, -10.5996)
+
+[node name="blockbench_export8" parent="DemoBlockbenchModels" instance=ExtResource("14_3747l")]
+transform = Transform3D(-0.125, -1.1878092e-08, 1.4668221e-08, 0, 0.09714324, 0.07866505, -1.8874475e-08, 0.07866505, -0.09714324, 0.31116563, 0.9927956, -10.521994)
+
+[node name="blockbench_export9" parent="DemoBlockbenchModels" instance=ExtResource("15_3kijf")]
+transform = Transform3D(0.018008206, 0.06406922, 0, -0.07280594, 0.015847221, 0, 0, 0, 0.068, 1.7202802, 1.1516343, -10.826073)
+
+[node name="blockbench_export10" parent="DemoBlockbenchModels" instance=ExtResource("16_jvm3s")]
+transform = Transform3D(0.5815389, -0.14849086, -0.20907547, -0.005539554, 0.58962154, -0.32221496, 0.2599054, 0.3448157, 0.46093926, 2.1022637, 1.2266486, -10.796082)
+
+[node name="MediumValve" parent="." instance=ExtResource("17_jvm3s")]
+transform = Transform3D(-4.3711385e-08, -0.258819, 0.9659257, 0, 0.96592575, 0.258819, -0.9999999, 1.1313339e-08, -4.2221956e-08, -2.0067945, 1.1128657, -4.954219)

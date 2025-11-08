@@ -14,6 +14,8 @@ var player_hand: Marker3D
 
 @export var object_ref: Node3D
 @export var interaction_type: InteractionType = InteractionType.DEFAULT
+@export var volume_primary_audio_player: float = -8.0
+@export var volume_secondary_audio_player: float = -8.0
 
 @export_group("Default object Settings")
 @export var interaction_strength: float = 5
@@ -35,9 +37,11 @@ var player_hand: Marker3D
 @export var switch_flip_se: AudioStreamOggVorbis
 @export var wheel_movement_sensitivity: float = 0.2
 @export var wheel_snap_interval_deg: float = 10.0
+@export var sound_wheel_threshold_distance: float = 30
 @export var wheel_snap_speed: float = 8.0
 @export var wheel_turning_se: AudioStreamOggVorbis
 @export var wheel_done_se: AudioStreamOggVorbis
+@export var continuosu_sound: bool = false
 
 @export_group("Note object Settings")
 @export var note_content: String
@@ -75,7 +79,6 @@ var last_door_rotation: Vector3
 
 # Sound wheel variables
 var last_wheel_angle: float
-var sound_wheel_threshold_distance: float = 30
 var has_wheel_sound_played: bool = true
 var has_stopped_wheel_interact: bool = false
 
@@ -171,7 +174,7 @@ func _process(delta: float) -> void:
 					switch_kickback_triggered = true
 					if switch_flip_se and not primary_audio_player.playing:
 						primary_audio_player.stop()
-						primary_audio_player.volume_db = -8
+						primary_audio_player.volume_db = volume_primary_audio_player
 						primary_audio_player.play()
 				
 				object_ref.rotation.z = lerp_angle(object_ref.rotation.z, switch_target_rotation, delta * switch_lerp_speed)
@@ -263,6 +266,8 @@ func postInteract() -> void:
 				is_switch_snapping = true
 		InteractionType.WHEEL:
 				has_stopped_wheel_interact = true
+				if primary_audio_player.playing :
+					primary_audio_player.stop()
 				# Snap the wheel to the nearest interval when released
 				var current_angle_deg = rad_to_deg(object_ref.rotation.z)
 				var snapped_angle_deg = round(current_angle_deg / wheel_snap_interval_deg) * wheel_snap_interval_deg
@@ -384,7 +389,7 @@ func update_door_sounds() -> void:
 	if is_rotating and !door_open and abs(door_angle - starting_rotation) > open_angle_treshold:
 		if not primary_audio_player.playing and door_open_se:
 			secondary_audio_player.stop()
-			primary_audio_player.volume_db = -8
+			primary_audio_player.volume_db = volume_primary_audio_player
 			primary_audio_player.play()
 			door_open = true
 	last_door_rotation = door_pivot_point.rotation
@@ -393,7 +398,7 @@ func update_door_sounds() -> void:
 	if door_open and abs(door_angle - starting_rotation) < shut_angle_threshold:
 		if not secondary_audio_player.playing and door_close_se:
 			primary_audio_player.stop()
-			secondary_audio_player.volume_db = -8
+			secondary_audio_player.volume_db = volume_secondary_audio_player
 			secondary_audio_player.play()
 		door_open = false
 
@@ -401,16 +406,20 @@ func update_switch_sounds() -> void:
 	if switch_moved:
 		if abs(object_ref.rotation.z - maxium_rotation) < 0.01 or abs(object_ref.rotation.z - starting_rotation) < 0.01:
 			if primary_audio_player and switch_flip_se:
-				primary_audio_player.volume_db = -8
+				primary_audio_player.volume_db = volume_primary_audio_player
 				primary_audio_player.play()
 			switch_moved = false
 
 func update_wheel_sounds() -> void:
 	var current_angle = rad_to_deg(object_ref.rotation.z)
 	var angle_diff = abs(current_angle - last_wheel_angle)
+	
+	if angle_diff < sound_wheel_threshold_distance and continuosu_sound:
+		primary_audio_player.stop()
+	
 	if angle_diff >= sound_wheel_threshold_distance:
 		if not primary_audio_player.playing:
-			primary_audio_player.volume_db = -8
+			primary_audio_player.volume_db = volume_primary_audio_player
 			primary_audio_player.play()
 		if current_angle > last_wheel_angle:
 			last_wheel_angle += sound_wheel_threshold_distance * floor(angle_diff / sound_wheel_threshold_distance)
