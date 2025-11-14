@@ -1,0 +1,63 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cdsvia4n006o8"]
+
+[ext_resource type="Shader" uid="uid://56t6l55demno" path="res://assets/materials/no_repetition.gdshader" id="1_0113i"]
+[ext_resource type="Texture2D" uid="uid://j4mdl8e2ctmk" path="res://assets/textures/floor_concrete.png" id="2_o7n2m"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0113i")
+shader_parameter/texture1_albedo = ExtResource("2_o7n2m")
+shader_parameter/texture2_albedo = ExtResource("2_o7n2m")
+shader_parameter/texture_scale = 4.01900018764262
+shader_parameter/noise_scale = 4.33500020265262
+shader_parameter/blend_sharpness = 5.0
+shader_parameter/uv_rotation = 81.250003859375
+shader_parameter/tile_offset = 2.10400009994
+shader_parameter/hash_multiplier = 0.1031
+shader_parameter/hash_offset = 33.33
+shader_parameter/noise_frequency_1 = 1.618
+shader_parameter/noise_frequency_2 = 2.414
+shader_parameter/noise_frequency_3 = 3.141
+shader_parameter/noise_strength_1 = 0.15
+shader_parameter/noise_strength_2 = 0.12
+shader_parameter/noise_strength_3 = 0.09
+shader_parameter/fbm_frequency_multiplier = 2.07
+shader_parameter/blend_threshold_low = 0.2
+shader_parameter/blend_threshold_high = 0.8
+shader_parameter/smoothing_intensity_1 = 0.02
+shader_parameter/smoothing_intensity_2 = 0.05
+shader_parameter/smoothing_intensity_3 = 0.1
+shader_parameter/weight_threshold = 0.001
+shader_parameter/weight_epsilon = 0.001
+shader_parameter/default_albedo = 0.5
+shader_parameter/default_roughness = 1.0
+shader_parameter/default_ao = 1.0
+shader_parameter/default_threshold = 0.1
+shader_parameter/texture_size_threshold = 4
+shader_parameter/tile_noise_scale_1 = 0.003
+shader_parameter/tile_noise_scale_2 = 0.007
+shader_parameter/tile_noise_scale_3 = 0.011
+shader_parameter/tile_randomness_range = 16.0
+shader_parameter/depth_scale = 0.1
+shader_parameter/hash_prime_1 = 12.9898
+shader_parameter/hash_prime_2 = 78.233
+shader_parameter/hash_offset_1 = 43758.547
+shader_parameter/hash_offset_2 = 28001.838
+shader_parameter/extra_hash_prime_1 = 7.13
+shader_parameter/extra_hash_prime_2 = 11.17
+shader_parameter/extra_hash_offset_1 = 127.1
+shader_parameter/extra_hash_offset_2 = 311.7
+shader_parameter/tile_sample_offset_1 = Vector2(0.31, 0.47)
+shader_parameter/tile_sample_offset_2 = Vector2(0.73, 0.19)
+shader_parameter/blend_smoothstep_low = 0.1
+shader_parameter/blend_smoothstep_high = 0.9
+shader_parameter/blend_variation_factor = 0.15
+shader_parameter/extra_offset_multiplier = 0.5
+shader_parameter/domain_warp_freq_1 = 1.3
+shader_parameter/domain_warp_freq_2 = 1.7
+shader_parameter/domain_warp_freq_3 = 2.1
+shader_parameter/domain_warp_freq_4 = 2.3
+shader_parameter/domain_warp_freq_5 = 4.7
+shader_parameter/domain_warp_freq_6 = 5.1
+shader_parameter/domain_warp_strength_2 = 0.6
+shader_parameter/domain_warp_strength_3 = 0.3

@@ -1,6 +1,6 @@
 // Floor material shader - Supports dual texture blending and anti-tiling techniques
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+render_mode depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
 
 // First texture set
@@ -484,12 +484,12 @@ void fragment() {
         
         // Set material outputs
         ALBEDO = final_albedo.rgb;
-        ALPHA = final_albedo.a;
+        ALPHA = 1.0;
         NORMAL_MAP = final_normal;
         ROUGHNESS = final_roughness;
         AO = final_ao;
     }
     
     // Set depth offset (parallax effect)
-    DEPTH = final_height * depth_scale;
+    //DEPTH = final_height * depth_scale;
 }
