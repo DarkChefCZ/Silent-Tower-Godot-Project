@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7u77yvvruucx"]
+
+[ext_resource type="PackedScene" uid="uid://bvg5rfbnevyc3" path="res://assets/models/objects/big_speaker.gltf" id="1_wjpe6"]
+
+[node name="Speaker" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_wjpe6")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+autoplay = true

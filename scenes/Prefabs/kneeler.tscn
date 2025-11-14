@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh3bbnkpw5uvi"]
+
+[ext_resource type="PackedScene" uid="uid://dvak6dxhdabny" path="res://assets/models/objects/kneeler.gltf" id="1_u6lm6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgohe"]
+size = Vector3(2.3726807, 2.5733643, 0.63534546)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6lm6"]
+size = Vector3(2.1357422, 0.57714844, 0.98657227)
+
+[node name="kneeler" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_u6lm6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05645752, 1.281189, 0.97254944)
+shape = SubResource("BoxShape3D_bgohe")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012817383, 0.28070068, 0.18019104)
+shape = SubResource("BoxShape3D_u6lm6")

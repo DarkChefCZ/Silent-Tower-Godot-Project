@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcbg76c1l65q7"]
+
+[ext_resource type="PackedScene" uid="uid://b661iuaaj225l" path="res://assets/models/objects/office_bin.gltf" id="1_gmdop"]
+[ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="2_dxyrc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dxyrc"]
+size = Vector3(1.0565796, 1.3873291, 0.009277344)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqfno"]
+size = Vector3(0.5739746, 0.018554688, 0.5683594)
+
+[node name="OfficeBin" type="Node3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="trashCan" type="RigidBody3D" parent="."]
+
+[node name="blockbench_export" parent="trashCan" instance=ExtResource("1_gmdop")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trashCan"]
+transform = Transform3D(1, 0, 0, 0, 0.9835305, -0.18074231, 0, 0.18074231, 0.9835305, 0.00088500977, 0.68926495, 0.40222064)
+shape = SubResource("BoxShape3D_dxyrc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="trashCan"]
+transform = Transform3D(-1, -1.5781485e-08, -8.598655e-08, 0, 0.98357147, -0.18051915, 8.742278e-08, -0.18051915, -0.98357147, 0.001, 0.689, -0.402)
+shape = SubResource("BoxShape3D_dxyrc")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="trashCan"]
+transform = Transform3D(-4.371139e-08, 0.18074231, 0.98353046, 0, 0.98353046, -0.18074231, -1, -7.900497e-09, -4.299148e-08, 0.4052878, 0.68926495, 0.0030666888)
+shape = SubResource("BoxShape3D_dxyrc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="trashCan"]
+transform = Transform3D(-4.371139e-08, -0.18051913, -0.9835714, 0, 0.9835714, -0.18051913, 1, -7.890741e-09, -4.299327e-08, -0.405, 0.689, 0.003)
+shape = SubResource("BoxShape3D_dxyrc")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="trashCan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0013427734, 0.0081597045, 0)
+shape = SubResource("BoxShape3D_bqfno")
+
+[node name="InteractionComponent" parent="trashCan" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_dxyrc")]
+object_ref = NodePath("..")

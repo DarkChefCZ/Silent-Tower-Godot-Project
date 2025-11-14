@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=27 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -7,11 +7,15 @@
 [ext_resource type="Material" uid="uid://cdsvia4n006o8" path="res://assets/materials/concrete.tres" id="2_fv5kg"]
 [ext_resource type="PackedScene" uid="uid://cuufdpjkgr3n3" path="res://assets/models/door/heavy_duty_door.gltf" id="2_i1o00"]
 [ext_resource type="Texture2D" uid="uid://j4mdl8e2ctmk" path="res://assets/textures/floor_concrete.png" id="3_dstxs"]
+[ext_resource type="PackedScene" uid="uid://cqc0wxfv1ifel" path="res://scenes/Prefabs/weak_light_prefab.tscn" id="3_lm6eo"]
 [ext_resource type="PackedScene" uid="uid://b0x25cli0tq5c" path="res://scenes/Prefabs/light_prefab.tscn" id="5_384xt"]
 [ext_resource type="Material" uid="uid://bvhw03sgfkl46" path="res://assets/materials/concrete_stairs.tres" id="6_4dqbf"]
 [ext_resource type="PackedScene" uid="uid://dqbo30f8cgymp" path="res://scenes/Prefabs/table.tscn" id="10_hm6ji"]
 [ext_resource type="PackedScene" uid="uid://c1esvf1bwny7f" path="res://scenes/Prefabs/computer_top.tscn" id="11_giinx"]
 [ext_resource type="PackedScene" uid="uid://cu7tf8v1mocyd" path="res://scenes/Prefabs/computer_tower.tscn" id="12_qt0eq"]
+[ext_resource type="PackedScene" uid="uid://dh3bbnkpw5uvi" path="res://scenes/Prefabs/kneeler.tscn" id="13_qymc3"]
+[ext_resource type="PackedScene" uid="uid://cet1xc5v62vq7" path="res://scenes/Prefabs/server_rack.tscn" id="14_ob8ar"]
+[ext_resource type="PackedScene" uid="uid://7u77yvvruucx" path="res://scenes/Prefabs/speaker.tscn" id="16_tvj71"]
 
 [sub_resource type="Environment" id="Environment_ahxxq"]
 background_energy_multiplier = 0.0
@@ -124,14 +128,20 @@ environment = SubResource("Environment_ahxxq")
 [node name="LightPrefab10" parent="WorldLigh&Env" instance=ExtResource("5_384xt")]
 transform = Transform3D(-4.3711378e-08, 0, 0.99999976, 0.27870613, 0.9603763, 1.218263e-08, -0.9603763, 0.2787061, -4.1979373e-08, 0, 14.053, -21.82421)
 
-[node name="LightPrefab11" parent="WorldLigh&Env" instance=ExtResource("5_384xt")]
-transform = Transform3D(-4.3711385e-08, 0, 0.9999998, 0, 0.9999999, 0, -0.99999994, 0, -4.371138e-08, 0, 14.053, -34.704422)
+[node name="LightPrefab13" parent="WorldLigh&Env" instance=ExtResource("5_384xt")]
+transform = Transform3D(-4.3711378e-08, 0, 0.99999976, -0.18645543, 0.9824633, -8.1502245e-09, -0.9824633, -0.18645541, -4.2944826e-08, 0, 14.053, -34.704422)
 
 [node name="LightPrefab12" parent="WorldLigh&Env" instance=ExtResource("5_384xt")]
 transform = Transform3D(-4.371138e-08, 6.131915e-15, 0.99999976, 0.39177522, 0.920061, 1.7125037e-08, -0.9200611, 0.39177513, -4.0217138e-08, 0, 23.853329, -41.51879)
 
 [node name="blockbench_export" parent="WorldLigh&Env" instance=ExtResource("2_dstxs")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0.13819999, 8.236932, -48.69942)
+
+[node name="WeakLightPrefab" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 4.7722545, 2.601266, -48.764835)
+
+[node name="WeakLightPrefab2" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -4.772, 2.601, -48.765)
 
 [node name="walls" type="Node3D" parent="."]
 
@@ -313,74 +323,171 @@ transform = Transform3D(0.85, 0, 0, 0, 1.069067, 0, 0, 0, 0.85, 0, -0.022376627,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8475952, 1.0269518)
 shape = SubResource("BoxShape3D_i1o00")
 
-[node name="tableSetup" parent="." instance=ExtResource("10_hm6ji")]
+[node name="Tables" type="Node3D" parent="."]
+
+[node name="tableSetup" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -4.1570897)
 
-[node name="computer_top" parent="tableSetup" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
 
-[node name="tableSetup2" parent="." instance=ExtResource("10_hm6ji")]
+[node name="kneeler" parent="Tables/tableSetup" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="tableSetup2" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -4.157)
 
-[node name="computer_top" parent="tableSetup2" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup2" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup2" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup2" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
 
-[node name="tableSetup3" parent="." instance=ExtResource("10_hm6ji")]
+[node name="kneeler" parent="Tables/tableSetup2" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="tableSetup3" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -8.314)
 
-[node name="computer_top" parent="tableSetup3" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup3" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup3" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup3" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
 
-[node name="tableSetup4" parent="." instance=ExtResource("10_hm6ji")]
+[node name="kneeler" parent="Tables/tableSetup3" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="tableSetup4" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -8.314)
 
-[node name="computer_top" parent="tableSetup4" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup4" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup4" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup4" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
 
-[node name="tableSetup5" parent="." instance=ExtResource("10_hm6ji")]
+[node name="kneeler" parent="Tables/tableSetup4" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="tableSetup5" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -12.471)
 
-[node name="computer_top" parent="tableSetup5" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup5" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup5" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup5" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
 
-[node name="tableSetup6" parent="." instance=ExtResource("10_hm6ji")]
+[node name="kneeler" parent="Tables/tableSetup5" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="tableSetup6" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -12.471)
 
-[node name="computer_top" parent="tableSetup6" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup6" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup6" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup6" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
 
-[node name="tableSetup7" parent="." instance=ExtResource("10_hm6ji")]
+[node name="kneeler" parent="Tables/tableSetup6" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="tableSetup7" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -16.628)
 
-[node name="computer_top" parent="tableSetup7" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup7" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup7" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup7" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
 
-[node name="tableSetup8" parent="." instance=ExtResource("10_hm6ji")]
+[node name="kneeler" parent="Tables/tableSetup7" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="tableSetup8" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -16.628)
 
-[node name="computer_top" parent="tableSetup8" instance=ExtResource("11_giinx")]
+[node name="computer_top" parent="Tables/tableSetup8" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
-[node name="Computer_tower" parent="tableSetup8" instance=ExtResource("12_qt0eq")]
+[node name="Computer_tower" parent="Tables/tableSetup8" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
+
+[node name="kneeler" parent="Tables/tableSetup8" instance=ExtResource("13_qymc3")]
+transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="Servers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.045)
+
+[node name="ServerRack" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -25.64375)
+
+[node name="ServerRack2" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -26.522793)
+
+[node name="ServerRack3" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -27.419859)
+
+[node name="ServerRack4" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -28.298903)
+
+[node name="ServerRack5" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -29.222252)
+
+[node name="ServerRack6" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -30.101295)
+
+[node name="ServerRack7" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -31.00183)
+
+[node name="ServerRack8" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -31.880873)
+
+[node name="ServerRack9" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -25.64375)
+
+[node name="ServerRack10" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -26.522793)
+
+[node name="ServerRack11" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -27.419859)
+
+[node name="ServerRack12" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -28.298903)
+
+[node name="ServerRack13" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -29.222252)
+
+[node name="ServerRack14" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -30.101295)
+
+[node name="ServerRack15" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -31.00183)
+
+[node name="ServerRack16" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -31.880873)
+
+[node name="Speakers" type="Node3D" parent="."]
+
+[node name="Speaker" parent="Speakers" instance=ExtResource("16_tvj71")]
+transform = Transform3D(-0.81760204, 0.053965017, -0.5732493, -0.07690381, 0.976443, 0.20160602, 0.5706251, 0.2089186, -0.79419154, -6.06725, 4.266268, -19.553436)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Speakers/Speaker"]
+transform = Transform3D(0.10618317, 0.13305984, -0.98540354, -0.26809585, 0.95813704, 0.10048917, 0.9575229, 0.2535124, 0.13741076, -0.008131981, 1.1561601, -0.8833504)
+light_color = Color(1, 0.7372549, 0.2784314, 1)
+light_energy = 0.472
+omni_range = 0.75
+
+[node name="Speaker2" parent="Speakers" instance=ExtResource("16_tvj71")]
+transform = Transform3D(-0.6501827, -0.20240986, 0.7323201, -0.07690382, 0.97644305, 0.20160605, -0.75587606, 0.07476252, -0.65043235, 6.067, 4.266, -19.553)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Speakers/Speaker2"]
+transform = Transform3D(0.9999999, 2.6077032e-08, -8.940697e-08, -3.7252903e-08, 0.99999994, -2.2351742e-08, -2.9802322e-08, -5.5879354e-08, 1, -0.036870003, 1.2560865, -0.77213097)
+light_color = Color(1, 0.7372549, 0.2784314, 1)
+light_energy = 0.472
+omni_range = 0.75

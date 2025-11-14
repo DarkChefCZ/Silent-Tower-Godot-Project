@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cet1xc5v62vq7"]
+
+[ext_resource type="PackedScene" uid="uid://ddqx2j78t08w0" path="res://assets/models/objects/server_rack.gltf" id="1_fvhvj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xbfv"]
+size = Vector3(0.8779297, 2.0018005, 0.876709)
+
+[node name="ServerRack" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_fvhvj")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029034674, 1.4076804, -0.4467643)
+light_color = Color(0.47145873, 0.7038008, 0.34399775, 1)
+light_energy = 0.4
+omni_range = 0.05
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029034674, 1.513451, -0.4467643)
+light_color = Color(0.47145873, 0.7038008, 0.34399775, 1)
+light_energy = 0.4
+omni_range = 0.05
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029034674, 1.6019869, -0.4467643)
+light_color = Color(0.47145873, 0.7038008, 0.34399775, 1)
+light_energy = 0.4
+omni_range = 0.05
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029034674, 1.7073157, -0.4467643)
+light_color = Color(0.47145873, 0.7038008, 0.34399775, 1)
+light_energy = 0.4
+omni_range = 0.05
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029034674, 1.8049133, -0.4467643)
+light_color = Color(0.47145873, 0.7038008, 0.34399775, 1)
+light_energy = 0.4
+omni_range = 0.05
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9997711, 0)
+shape = SubResource("BoxShape3D_7xbfv")
