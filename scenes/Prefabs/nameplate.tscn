@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwf3ai0vblno8"]
+
+[ext_resource type="PackedScene" uid="uid://13qhtexra7fn" path="res://assets/models/objects/table_nameplate.gltf" id="1_10rco"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xq3cx"]
+size = Vector3(0.5, 0.12475586, 0.096191406)
+
+[node name="Nameplate" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_10rco")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06237793, -0.0012207031)
+shape = SubResource("BoxShape3D_xq3cx")

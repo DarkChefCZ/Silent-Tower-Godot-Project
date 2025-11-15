@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=30 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -15,7 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cu7tf8v1mocyd" path="res://scenes/Prefabs/computer_tower.tscn" id="12_qt0eq"]
 [ext_resource type="PackedScene" uid="uid://dh3bbnkpw5uvi" path="res://scenes/Prefabs/kneeler.tscn" id="13_qymc3"]
 [ext_resource type="PackedScene" uid="uid://cet1xc5v62vq7" path="res://scenes/Prefabs/server_rack.tscn" id="14_ob8ar"]
+[ext_resource type="PackedScene" uid="uid://bcbg76c1l65q7" path="res://scenes/Prefabs/trash_can.tscn" id="15_7p3oy"]
+[ext_resource type="PackedScene" uid="uid://bwf3ai0vblno8" path="res://scenes/Prefabs/nameplate.tscn" id="16_dpatr"]
 [ext_resource type="PackedScene" uid="uid://7u77yvvruucx" path="res://scenes/Prefabs/speaker.tscn" id="16_tvj71"]
+[ext_resource type="FontFile" uid="uid://x2f512as3wp8" path="res://assets/Cinzel-VariableFont_wght.ttf" id="19_rd4j6"]
 
 [sub_resource type="Environment" id="Environment_ahxxq"]
 background_energy_multiplier = 0.0
@@ -126,22 +129,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.6593895)
 environment = SubResource("Environment_ahxxq")
 
 [node name="LightPrefab10" parent="WorldLigh&Env" instance=ExtResource("5_384xt")]
-transform = Transform3D(-4.3711378e-08, 0, 0.99999976, 0.27870613, 0.9603763, 1.218263e-08, -0.9603763, 0.2787061, -4.1979373e-08, 0, 14.053, -21.82421)
+transform = Transform3D(-4.3711378e-08, 8.529855e-16, 0.99999976, -0.050366335, 0.9987307, -2.2015831e-09, -0.9987307, -0.050366335, -4.365589e-08, 0, 12.408957, -22.28898)
 
 [node name="LightPrefab13" parent="WorldLigh&Env" instance=ExtResource("5_384xt")]
 transform = Transform3D(-4.3711378e-08, 0, 0.99999976, -0.18645543, 0.9824633, -8.1502245e-09, -0.9824633, -0.18645541, -4.2944826e-08, 0, 14.053, -34.704422)
 
 [node name="LightPrefab12" parent="WorldLigh&Env" instance=ExtResource("5_384xt")]
-transform = Transform3D(-4.371138e-08, 6.131915e-15, 0.99999976, 0.39177522, 0.920061, 1.7125037e-08, -0.9200611, 0.39177513, -4.0217138e-08, 0, 23.853329, -41.51879)
+transform = Transform3D(-4.371138e-08, 6.131915e-15, 0.99999976, 0.25854936, 0.96599805, 1.130155e-08, -0.96599823, 0.25854927, -4.222511e-08, 0, 23.853329, -41.51879)
 
 [node name="blockbench_export" parent="WorldLigh&Env" instance=ExtResource("2_dstxs")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0.13819999, 8.236932, -48.69942)
 
 [node name="WeakLightPrefab" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 4.7722545, 2.601266, -48.764835)
+transform = Transform3D(-4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0, 0, 1, 6.237348, 3.7059634, -41.849106)
 
 [node name="WeakLightPrefab2" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -4.772, 2.601, -48.765)
+transform = Transform3D(4.3711385e-08, -0.99999994, -8.742278e-08, -0.99999994, -4.3711385e-08, 0, -3.8213705e-15, 8.742277e-08, -1, -6.237, 3.706, -41.84868)
 
 [node name="walls" type="Node3D" parent="."]
 
@@ -326,7 +329,7 @@ shape = SubResource("BoxShape3D_i1o00")
 [node name="Tables" type="Node3D" parent="."]
 
 [node name="tableSetup" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -4.1570897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7370338, -0.005978156, -4.1570897)
 
 [node name="computer_top" parent="Tables/tableSetup" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
@@ -337,20 +340,42 @@ transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.9769743
 [node name="kneeler" parent="Tables/tableSetup" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
 
+[node name="Nameplate" parent="Tables/tableSetup" instance=ExtResource("16_dpatr")]
+transform = Transform3D(0.18882121, 0, -0.9820115, 0, 1, 0, 0.9820115, 0, 0.18882121, 0.8745562, 0.98765415, -0.22413063)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup/Nameplate"]
+transform = Transform3D(-0.999998, 0.00035450608, 0.0020650625, 0.0008472755, 0.96982175, 0.24381317, -0.0019164085, 0.24381435, -0.96982, 0.006740093, 0.065387964, -0.035041273)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Dr. Briwch"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
 [node name="tableSetup2" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -4.157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.737, -0.006, -4.157)
 
 [node name="computer_top" parent="Tables/tableSetup2" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
 [node name="Computer_tower" parent="Tables/tableSetup2" instance=ExtResource("12_qt0eq")]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.53846574, 0.97697437, 0)
 
 [node name="kneeler" parent="Tables/tableSetup2" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
 
+[node name="Nameplate2" parent="Tables/tableSetup2" instance=ExtResource("16_dpatr")]
+transform = Transform3D(-0.2752682, 0, 0.9613674, 0, 1, 0, -0.9613674, 0, -0.2752682, -0.85783577, 0.988, 0.2620473)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup2/Nameplate2"]
+transform = Transform3D(-0.999998, 0.00035450608, 0.0020650625, 0.0008472755, 0.96982175, 0.24381317, -0.0019164085, 0.24381435, -0.96982, 0.006740093, 0.065387964, -0.035041273)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Father leo"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
 [node name="tableSetup3" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -8.314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7370338, -0.005978156, -8.314)
 
 [node name="computer_top" parent="Tables/tableSetup3" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
@@ -361,20 +386,42 @@ transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.9769743
 [node name="kneeler" parent="Tables/tableSetup3" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
 
+[node name="Nameplate" parent="Tables/tableSetup3" instance=ExtResource("16_dpatr")]
+transform = Transform3D(0.18882121, 0, -0.9820115, 0, 1, 0, 0.9820115, 0, 0.18882121, 0.8745562, 0.98765415, -0.22413063)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup3/Nameplate"]
+transform = Transform3D(-0.999998, 0.00035450608, 0.0020650625, 0.0008472755, 0.96982175, 0.24381317, -0.0019164085, 0.24381435, -0.96982, 0.006740093, 0.065387964, -0.035041273)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Dr. Markin"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
 [node name="tableSetup4" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -8.314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.737, -0.006, -8.314)
 
 [node name="computer_top" parent="Tables/tableSetup4" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
 [node name="Computer_tower" parent="Tables/tableSetup4" instance=ExtResource("12_qt0eq")]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.53846574, 0.97697437, 0)
 
 [node name="kneeler" parent="Tables/tableSetup4" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
 
+[node name="Nameplate2" parent="Tables/tableSetup4" instance=ExtResource("16_dpatr")]
+transform = Transform3D(0.06251183, 0, 0.99804425, 0, 1, 0, -0.99804425, 0, 0.06251183, -0.85783577, 0.988, 0.026242256)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup4/Nameplate2"]
+transform = Transform3D(-0.8045877, 0.00035347324, 0.0020904168, 0.0006817088, 0.96699446, 0.246806, -0.0015419237, 0.24310358, -0.9817247, 0.00674057, 0.065387964, -0.035041332)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Dr. Lockhart"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
 [node name="tableSetup5" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -12.471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7370338, -0.005978156, -12.471)
 
 [node name="computer_top" parent="Tables/tableSetup5" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
@@ -385,20 +432,42 @@ transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.9769743
 [node name="kneeler" parent="Tables/tableSetup5" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
 
+[node name="Nameplate" parent="Tables/tableSetup5" instance=ExtResource("16_dpatr")]
+transform = Transform3D(0.18882121, 0, -0.9820115, 0, 1, 0, 0.9820115, 0, 0.18882121, 0.8745562, 0.98765415, -0.22413063)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup5/Nameplate"]
+transform = Transform3D(-0.8035242, 0.00035779178, 0.0019902587, 0.00068080775, 0.9788189, 0.23498252, -0.0015399009, 0.24607626, -0.9346942, 0.0067386627, 0.065387964, -0.035041213)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Eng. Johnson"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
 [node name="tableSetup6" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -12.471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.737, -0.006, -12.471)
 
 [node name="computer_top" parent="Tables/tableSetup6" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
 [node name="Computer_tower" parent="Tables/tableSetup6" instance=ExtResource("12_qt0eq")]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.53846574, 0.97697437, 0)
 
 [node name="kneeler" parent="Tables/tableSetup6" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
 
+[node name="Nameplate2" parent="Tables/tableSetup6" instance=ExtResource("16_dpatr")]
+transform = Transform3D(0.062511854, 0, 0.99804413, 0, 1, 0, -0.99804413, 0, 0.062511854, -0.85783577, 0.988, 0.026242256)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup6/Nameplate2"]
+transform = Transform3D(-0.80899423, 0.0003534956, 0.0020898469, 0.00068544236, 0.96705824, 0.24673851, -0.001550369, 0.2431196, -0.9814563, 0.00674057, 0.065387964, -0.035041332)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Dr. Bramwell"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
 [node name="tableSetup7" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7219892, -0.005978156, -16.628)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7370338, -0.005978156, -16.628)
 
 [node name="computer_top" parent="Tables/tableSetup7" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
@@ -409,68 +478,138 @@ transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.9769743
 [node name="kneeler" parent="Tables/tableSetup7" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
 
+[node name="Nameplate" parent="Tables/tableSetup7" instance=ExtResource("16_dpatr")]
+transform = Transform3D(0.18882121, 0, -0.9820115, 0, 1, 0, 0.9820115, 0, 0.18882121, 0.8745562, 0.98765415, -0.22413063)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup7/Nameplate"]
+transform = Transform3D(-0.55793184, 0.0003619045, 0.0018967837, 0.00047272292, 0.9900653, 0.2239442, -0.0010692254, 0.24890362, -0.8907869, 0.0015525818, 0.065387964, -0.0360384)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Safety Off. Langley"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
 [node name="tableSetup8" parent="Tables" instance=ExtResource("10_hm6ji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722, -0.006, -16.628)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.737, -0.006, -16.628)
 
 [node name="computer_top" parent="Tables/tableSetup8" instance=ExtResource("11_giinx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
 
 [node name="Computer_tower" parent="Tables/tableSetup8" instance=ExtResource("12_qt0eq")]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.628531, 0.97697437, 0)
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.53846574, 0.97697437, 0)
 
 [node name="kneeler" parent="Tables/tableSetup8" instance=ExtResource("13_qymc3")]
 transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+
+[node name="Nameplate2" parent="Tables/tableSetup8" instance=ExtResource("16_dpatr")]
+transform = Transform3D(0.062511854, 0, 0.99804413, 0, 1, 0, -0.99804413, 0, 0.062511854, -0.85783577, 0.988, 0.026242256)
+
+[node name="Label3D" type="Label3D" parent="Tables/tableSetup8/Nameplate2"]
+transform = Transform3D(-0.7006219, 0.00035292283, 0.0021039024, 0.00059362093, 0.9654903, 0.24839829, -0.0013426803, 0.24272543, -0.9880584, 0.00674057, 0.065387964, -0.035041213)
+modulate = Color(0.5615484, 0.4442887, 0.2182517, 1)
+text = "Lab Mgr. Novak"
+font = ExtResource("19_rd4j6")
+font_size = 16
+outline_size = 0
+
+[node name="OfficeBin" parent="Tables" instance=ExtResource("15_7p3oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.310003, 0.00048828125, -11.719106)
+
+[node name="OfficeBin2" parent="Tables" instance=ExtResource("15_7p3oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05321, 0.00048828125, -7.4648886)
 
 [node name="Servers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.045)
 
 [node name="ServerRack" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -25.64375)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -7.400633)
 
 [node name="ServerRack2" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -26.522793)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -8.279676)
 
 [node name="ServerRack3" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -27.419859)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -9.176743)
 
 [node name="ServerRack4" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -28.298903)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -10.055786)
 
 [node name="ServerRack5" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -29.222252)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -10.9791355)
 
 [node name="ServerRack6" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -30.101295)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -11.858179)
 
 [node name="ServerRack7" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -31.00183)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -12.758713)
 
 [node name="ServerRack8" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8878374, 0.6699587, -31.880873)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -13.637756)
 
 [node name="ServerRack9" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -25.64375)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -7.400633)
 
 [node name="ServerRack10" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -26.522793)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -8.279676)
 
 [node name="ServerRack11" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -27.419859)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -9.176743)
 
 [node name="ServerRack12" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -28.298903)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -10.055786)
 
 [node name="ServerRack13" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -29.222252)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -10.9791355)
 
 [node name="ServerRack14" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -30.101295)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -11.858179)
 
 [node name="ServerRack15" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -31.00183)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -12.758713)
 
 [node name="ServerRack16" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.888, 0.6699587, -31.880873)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -13.637756)
+
+[node name="ServerRack18" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -7.843733)
+
+[node name="ServerRack19" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -8.740799)
+
+[node name="ServerRack20" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -9.619843)
+
+[node name="ServerRack21" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -10.543192)
+
+[node name="ServerRack22" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -11.4222355)
+
+[node name="ServerRack23" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -12.322769)
+
+[node name="ServerRack24" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -13.201813)
+
+[node name="ServerRack26" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -7.843733)
+
+[node name="ServerRack27" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -8.740799)
+
+[node name="ServerRack28" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -9.619843)
+
+[node name="ServerRack29" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -10.543192)
+
+[node name="ServerRack30" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -11.4222355)
+
+[node name="ServerRack31" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -12.322769)
+
+[node name="ServerRack32" parent="Servers" instance=ExtResource("14_ob8ar")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -13.201813)
 
 [node name="Speakers" type="Node3D" parent="."]
 

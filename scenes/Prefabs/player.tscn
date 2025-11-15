@@ -14,21 +14,21 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rjgie"]
 shader = ExtResource("2_rjgie")
-shader_parameter/grain_intensity = 0.10000000475
-shader_parameter/min_lum = 0.0
-shader_parameter/max_lum = 1.0
+shader_parameter/grain_intensity = 0.150000007125
+shader_parameter/min_lum = 0.400000019
+shader_parameter/max_lum = 0.6000000285
 shader_parameter/time_scale = 1.0
 shader_parameter/vignette_darkness = 0.0
 shader_parameter/vignette_outer_radius = 0.10000000149012
 shader_parameter/vignette_inner_radius = 0.0
-shader_parameter/scanline_intensity = 0.0
+shader_parameter/scanline_intensity = 0.050000002375
 shader_parameter/barrel_distortion = 0.0050000002375
 shader_parameter/chromatic_aberration = 0.0
 shader_parameter/crt_vignette_power = 0.50000002375
 shader_parameter/pixel_resolution_x = 640
 shader_parameter/pixel_resolution_y = 480
 shader_parameter/enable_color_quantization = true
-shader_parameter/color_quant_steps = 64.0
+shader_parameter/color_quant_steps = 48.000002185
 shader_parameter/warble_amount = 0.0
 shader_parameter/warble_speed = 0.0
 
@@ -80,7 +80,7 @@ remote_path = NodePath("../../SubViewportContainer/SubViewport/NoteCamera")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3D"]
 
-[node name="ColorRect" type="ColorRect" parent="Head/Camera3D/CanvasLayer"]
+[node name="PSXEffects" type="ColorRect" parent="Head/Camera3D/CanvasLayer"]
 top_level = true
 light_mask = 7
 visibility_layer = 7

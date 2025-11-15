@@ -10,30 +10,31 @@ size = Vector3(1.0565796, 1.3873291, 0.009277344)
 size = Vector3(0.5739746, 0.018554688, 0.5683594)
 
 [node name="OfficeBin" type="Node3D"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="trashCan" type="RigidBody3D" parent="."]
+mass = 1.5
 
 [node name="blockbench_export" parent="trashCan" instance=ExtResource("1_gmdop")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="trashCan"]
-transform = Transform3D(1, 0, 0, 0, 0.9835305, -0.18074231, 0, 0.18074231, 0.9835305, 0.00088500977, 0.68926495, 0.40222064)
-shape = SubResource("BoxShape3D_dxyrc")
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="trashCan"]
-transform = Transform3D(-1, -1.5781485e-08, -8.598655e-08, 0, 0.98357147, -0.18051915, 8.742278e-08, -0.18051915, -0.98357147, 0.001, 0.689, -0.402)
+transform = Transform3D(-0.3, -8.177291e-09, -4.4554554e-08, 0, 0.29507145, -0.05415575, 4.5298744e-08, -0.05415575, -0.29507145, 0.001, 0.20653544, -0.121949226)
 shape = SubResource("BoxShape3D_dxyrc")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="trashCan"]
-transform = Transform3D(-4.371139e-08, 0.18074231, 0.98353046, 0, 0.98353046, -0.18074231, -1, -7.900497e-09, -4.299148e-08, 0.4052878, 0.68926495, 0.0030666888)
+transform = Transform3D(0.3, 0, 0, 0, 0.29507145, -0.05415575, 0, 0.05415575, 0.29507145, 0.001, 0.207, 0.122)
 shape = SubResource("BoxShape3D_dxyrc")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="trashCan"]
-transform = Transform3D(-4.371139e-08, -0.18051913, -0.9835714, 0, 0.9835714, -0.18051913, 1, -7.890741e-09, -4.299327e-08, -0.405, 0.689, 0.003)
+transform = Transform3D(-1.3113417e-08, -0.05415575, -0.29507145, 0, 0.29507145, -0.05415575, 0.3, -2.3672229e-09, -1.2897983e-08, -0.12189889, 0.20687157, 0.003)
+shape = SubResource("BoxShape3D_dxyrc")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="trashCan"]
+transform = Transform3D(-1.3113417e-08, 0.05415575, 0.29507145, 0, 0.29507145, -0.05415575, -0.3, -2.3672229e-09, -1.2897983e-08, 0.122, 0.207, 0.003)
 shape = SubResource("BoxShape3D_dxyrc")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="trashCan"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0013427734, 0.0081597045, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0013427734, 0.0012230277, 0)
 shape = SubResource("BoxShape3D_bqfno")
 
 [node name="InteractionComponent" parent="trashCan" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_dxyrc")]

@@ -7,4 +7,6 @@
 [node name="blockbench_export" parent="." instance=ExtResource("1_wjpe6")]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -20.0
+pitch_scale = 0.6
 autoplay = true
