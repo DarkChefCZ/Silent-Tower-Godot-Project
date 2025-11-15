@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://7u77yvvruucx"]
+[gd_scene load_steps=3 format=3 uid="uid://7u77yvvruucx"]
 
 [ext_resource type="PackedScene" uid="uid://bvg5rfbnevyc3" path="res://assets/models/objects/big_speaker.gltf" id="1_wjpe6"]
+[ext_resource type="AudioStream" uid="uid://bmwe6g6ycpsyi" path="res://assets/music/A Choir of Angels (Music Slowed 800).mp3" id="2_dvexm"]
 
 [node name="Speaker" type="StaticBody3D"]
 
 [node name="blockbench_export" parent="." instance=ExtResource("1_wjpe6")]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-volume_db = -20.0
-pitch_scale = 0.6
+stream = ExtResource("2_dvexm")
+volume_db = -50.0
+pitch_scale = 0.9
 autoplay = true

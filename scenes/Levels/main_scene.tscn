@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=45 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cuufdpjkgr3n3" path="res://assets/models/door/heavy_duty_door.gltf" id="2_i1o00"]
 [ext_resource type="Texture2D" uid="uid://j4mdl8e2ctmk" path="res://assets/textures/floor_concrete.png" id="3_dstxs"]
 [ext_resource type="PackedScene" uid="uid://cqc0wxfv1ifel" path="res://scenes/Prefabs/weak_light_prefab.tscn" id="3_lm6eo"]
+[ext_resource type="VoxelGIData" uid="uid://bvfx1ii6c84gi" path="res://BakingLights/main_scene.VoxelGI_data.res" id="4_5i8k7"]
 [ext_resource type="PackedScene" uid="uid://b0x25cli0tq5c" path="res://scenes/Prefabs/light_prefab.tscn" id="5_384xt"]
 [ext_resource type="Material" uid="uid://bvhw03sgfkl46" path="res://assets/materials/concrete_stairs.tres" id="6_4dqbf"]
 [ext_resource type="PackedScene" uid="uid://dqbo30f8cgymp" path="res://scenes/Prefabs/table.tscn" id="10_hm6ji"]
@@ -18,13 +19,22 @@
 [ext_resource type="PackedScene" uid="uid://bcbg76c1l65q7" path="res://scenes/Prefabs/trash_can.tscn" id="15_7p3oy"]
 [ext_resource type="PackedScene" uid="uid://bwf3ai0vblno8" path="res://scenes/Prefabs/nameplate.tscn" id="16_dpatr"]
 [ext_resource type="PackedScene" uid="uid://7u77yvvruucx" path="res://scenes/Prefabs/speaker.tscn" id="16_tvj71"]
+[ext_resource type="PackedScene" uid="uid://dw0ehhoom4273" path="res://assets/models/objects/computer_keyboard.gltf" id="17_vfwtc"]
+[ext_resource type="PackedScene" uid="uid://d03wr4b6dacr3" path="res://assets/models/objects/computer_mouse.gltf" id="18_6sdv5"]
+[ext_resource type="PackedScene" uid="uid://dt7gnsfilvtr8" path="res://scenes/Prefabs/crumbled_paper.tscn" id="19_i25wh"]
+[ext_resource type="PackedScene" uid="uid://548dh6laqt3o" path="res://assets/models/objects/computer_screen.gltf" id="19_lnnwg"]
 [ext_resource type="FontFile" uid="uid://x2f512as3wp8" path="res://assets/Cinzel-VariableFont_wght.ttf" id="19_rd4j6"]
+[ext_resource type="PackedScene" uid="uid://ch0vmyl0nd7p0" path="res://scenes/Prefabs/InteractionObjects/leos_note.tscn" id="24_6sdv5"]
+[ext_resource type="Texture2D" uid="uid://jxw5sin4x7f2" path="res://assets/textures/AngelNumberPoster.png" id="25_lnnwg"]
 
 [sub_resource type="Environment" id="Environment_ahxxq"]
 background_energy_multiplier = 0.0
 ambient_light_source = 2
 ambient_light_energy = 0.0
 tonemap_mode = 3
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.0
+sdfgi_energy = 0.065
 glow_strength = 2.0
 fog_light_color = Color(0.61, 0.61, 0.61, 1)
 fog_light_energy = 0.0
@@ -120,6 +130,29 @@ size = Vector3(1.4501953, 0.5004883, 1.7481384)
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1o00"]
 size = Vector3(1.7001953, 1.6981201, 0.055603027)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2dkt"]
+size = Vector3(1.8828125, 0.06378174, 0.7514038)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pn7j3"]
+size = Vector3(2.2497559, 1.5101929, 0.25805664)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ruq7k"]
+size = Vector3(0.19042969, 0.8179321, 0.43408203)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nqaov"]
+size = Vector3(0.19433594, 0.6555176, 0.15626526)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_okkr0"]
+size = Vector3(0.30444336, 0.41308594, 0.07739258)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_exodd"]
+size = Vector3(0.2855835, 0.11035156, 0.40820313)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5i8k7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eowjx"]
+albedo_texture = ExtResource("25_lnnwg")
+
 [node name="MainScene" type="Node3D"]
 
 [node name="WorldLigh&Env" type="Node3D" parent="."]
@@ -145,6 +178,11 @@ transform = Transform3D(-4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-
 
 [node name="WeakLightPrefab2" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
 transform = Transform3D(4.3711385e-08, -0.99999994, -8.742278e-08, -0.99999994, -4.3711385e-08, 0, -3.8213705e-15, 8.742277e-08, -1, -6.237, 3.706, -41.84868)
+
+[node name="VoxelGI" type="VoxelGI" parent="WorldLigh&Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.700817, -33.93106)
+size = Vector3(20, 47.606506, 40.63965)
+data = ExtResource("4_5i8k7")
 
 [node name="walls" type="Node3D" parent="."]
 
@@ -354,14 +392,47 @@ outline_size = 0
 [node name="tableSetup2" parent="Tables" instance=ExtResource("10_hm6ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.737, -0.006, -4.157)
 
-[node name="computer_top" parent="Tables/tableSetup2" instance=ExtResource("11_giinx")]
+[node name="computer_top" type="StaticBody3D" parent="Tables/tableSetup2"]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.1896286, 0.9706943, 0.28191185)
+
+[node name="blockbench_export" parent="Tables/tableSetup2/computer_top" instance=ExtResource("17_vfwtc")]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 0, 0, -0.87142277)
+
+[node name="blockbench_export2" parent="Tables/tableSetup2/computer_top" instance=ExtResource("18_6sdv5")]
+transform = Transform3D(0.3637068, 0, -0.34309965, 0, 0.5, 0, 0.34309965, 0, 0.3637068, 1.5067654, 0, -1.0042353)
+
+[node name="blockbench_export3" parent="Tables/tableSetup2/computer_top" instance=ExtResource("19_lnnwg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.1847434, -1.0601811)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tables/tableSetup2/computer_top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03201294, -0.8712702)
+shape = SubResource("BoxShape3D_t2dkt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Tables/tableSetup2/computer_top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93325806, -1.0628662)
+shape = SubResource("BoxShape3D_pn7j3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Tables/tableSetup2/computer_top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00048828125, 0.40542233, -1.4061272)
+shape = SubResource("BoxShape3D_ruq7k")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Tables/tableSetup2/computer_top"]
+transform = Transform3D(1, 0, 0, 0, 0.99337673, -0.11490246, 0, 0.11490246, 0.99337673, 0.00048828125, 0.32351315, -1.581592)
+shape = SubResource("BoxShape3D_nqaov")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Tables/tableSetup2/computer_top"]
+transform = Transform3D(1, 0, 0, 0, 0.94893116, -0.31548345, 0, 0.31548345, 0.94893116, 0.0032958984, 0.17334998, -1.6792345)
+shape = SubResource("BoxShape3D_okkr0")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Tables/tableSetup2/computer_top"]
+transform = Transform3D(0.7274136, 0, -0.6861993, 0, 1, 0, 0.6861993, 0, 0.7274136, 1.4851556, 0.05419922, -0.9816599)
+shape = SubResource("BoxShape3D_exodd")
 
 [node name="Computer_tower" parent="Tables/tableSetup2" instance=ExtResource("12_qt0eq")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -0.53846574, 0.97697437, 0)
 
 [node name="kneeler" parent="Tables/tableSetup2" instance=ExtResource("13_qymc3")]
-transform = Transform3D(-0.375, 0, -5.6623428e-08, 0, 0.375, 0, 5.6623428e-08, 0, -0.375, 0.28386617, 0, 1.0522552)
+transform = Transform3D(-0.2225321, 0, 0.30183518, 0, 0.375, 0, -0.30183518, 0, -0.2225321, 0.6934066, 0.002051833, 1.2843947)
 
 [node name="Nameplate2" parent="Tables/tableSetup2" instance=ExtResource("16_dpatr")]
 transform = Transform3D(-0.2752682, 0, 0.9613674, 0, 1, 0, -0.9613674, 0, -0.2752682, -0.85783577, 0.988, 0.2620473)
@@ -522,52 +593,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05321, 0.00048828125, -7.46
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.045)
 
 [node name="ServerRack" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -7.400633)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -7.400633)
 
 [node name="ServerRack2" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -8.279676)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -8.279676)
 
 [node name="ServerRack3" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -9.176743)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -9.176743)
 
 [node name="ServerRack4" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -10.055786)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -10.055786)
 
 [node name="ServerRack5" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -10.9791355)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -10.9791355)
 
 [node name="ServerRack6" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -11.858179)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -11.858179)
 
 [node name="ServerRack7" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -12.758713)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -12.758713)
 
 [node name="ServerRack8" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 0.024765193, -13.637756)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.134, 0.024765193, -13.637756)
 
 [node name="ServerRack9" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -7.400633)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -7.400633)
 
 [node name="ServerRack10" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -8.279676)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -8.279676)
 
 [node name="ServerRack11" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -9.176743)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -9.176743)
 
 [node name="ServerRack12" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -10.055786)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -10.055786)
 
 [node name="ServerRack13" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -10.9791355)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -10.9791355)
 
 [node name="ServerRack14" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -11.858179)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -11.858179)
 
 [node name="ServerRack15" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -12.758713)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -12.758713)
 
 [node name="ServerRack16" parent="Servers" instance=ExtResource("14_ob8ar")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 0.024765193, -13.637756)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.1338897, 0.024765193, -13.637756)
 
 [node name="ServerRack18" parent="Servers" instance=ExtResource("14_ob8ar")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.397289, 2.021891, -7.843733)
@@ -612,6 +683,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.3
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -6.397, 2.021891, -13.201813)
 
 [node name="Speakers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.6994257, 0)
 
 [node name="Speaker" parent="Speakers" instance=ExtResource("16_tvj71")]
 transform = Transform3D(-0.81760204, 0.053965017, -0.5732493, -0.07690381, 0.976443, 0.20160602, 0.5706251, 0.2089186, -0.79419154, -6.06725, 4.266268, -19.553436)
@@ -630,3 +702,23 @@ transform = Transform3D(0.9999999, 2.6077032e-08, -8.940697e-08, -3.7252903e-08,
 light_color = Color(1, 0.7372549, 0.2784314, 1)
 light_energy = 0.472
 omni_range = 0.75
+
+[node name="CrumbledPaper" parent="." instance=ExtResource("19_i25wh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0407643, 0.42084056, -7.4665093)
+
+[node name="CrumbledPaper2" parent="." instance=ExtResource("19_i25wh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0407643, 0.2906891, -7.4665093)
+
+[node name="CrumbledPaper3" parent="." instance=ExtResource("19_i25wh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1080685, 1.130727, -12.232155)
+
+[node name="LeosNoteStorage" type="Node3D" parent="."]
+transform = Transform3D(0.45890504, 0, -0.19850987, 0, 0.5, 0, 0.19850987, 0, 0.45890504, 2.9964442, 0.97404087, -3.7992098)
+
+[node name="LeosNote" parent="LeosNoteStorage" instance=ExtResource("24_6sdv5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.6226834e-08, -0.99999994, 4.371139e-08, 0, -4.3711385e-08, -1, 0.6, -4.3711385e-08, 1.9106855e-15, 6.3263097, 1.623424, -4.2534356)
+mesh = SubResource("PlaneMesh_5i8k7")
+surface_material_override/0 = SubResource("StandardMaterial3D_eowjx")

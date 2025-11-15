@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt7gnsfilvtr8"]
+
+[ext_resource type="PackedScene" uid="uid://dcr47x82op0b4" path="res://assets/models/objects/crumbled_paper.gltf" id="1_mcsty"]
+[ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="1_r5arp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r5arp"]
+size = Vector3(0.064575195, 0.13604736, 0.18017578)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwamv"]
+size = Vector3(0.078063965, 0.09863281, 0.05859375)
+
+[node name="CrumbledPaper" type="RigidBody3D"]
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_r5arp")]
+object_ref = NodePath("..")
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_mcsty")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018005371, 0.018035889, 0.008056641)
+shape = SubResource("BoxShape3D_r5arp")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.051239014, 0.023406982, 0.008056641)
+shape = SubResource("BoxShape3D_bwamv")

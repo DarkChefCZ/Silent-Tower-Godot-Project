@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch0vmyl0nd7p0"]
+
+[ext_resource type="Texture2D" uid="uid://d02oq5k5cggsx" path="res://assets/textures/LeosNotes.png" id="1_b12c2"]
+[ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="2_8pxex"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oq28i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jatcy"]
+albedo_texture = ExtResource("1_b12c2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsdai"]
+size = Vector3(5.544922, 0.06347656, 7.676758)
+
+[node name="LeosNote" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.556, 0, 0, 0, 0.5, 0, 0, 0, 0.768, 0, 0, 0)
+mesh = SubResource("PlaneMesh_oq28i")
+surface_material_override/0 = SubResource("StandardMaterial3D_jatcy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
+transform = Transform3D(1.7985612, 0, 0, 0, 2, 0, 0, 0, 1.3020834, -0.037505794, 0.5963329, -0.009700579)
+layers = 2
+light_color = Color(0.8311784, 0.5229674, 0.28670985, 1)
+light_energy = 0.3
+omni_range = 0.75
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0061352625, 0.0023513883)
+shape = SubResource("BoxShape3D_jsdai")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_8pxex")]
+object_ref = NodePath("..")
+interaction_type = 4
+note_content = "To set the right way,\\n\\nthe Angel number enter at the first gate.\\n\\nSecond gate ->\\n\\nMy mind open like a seam.\\n\\nA path. A pull.\\n\\nThe CIS is the way.\\n\\nOlder than time."
