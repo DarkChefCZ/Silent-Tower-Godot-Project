@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcbg76c1l65q7"]
+[gd_scene load_steps=6 format=3 uid="uid://bcbg76c1l65q7"]
 
 [ext_resource type="PackedScene" uid="uid://b661iuaaj225l" path="res://assets/models/objects/office_bin.gltf" id="1_gmdop"]
 [ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="2_dxyrc"]
+[ext_resource type="AudioStream" uid="uid://b4flybrjnkw8r" path="res://assets/sounds/binImpact.ogg" id="3_bqfno"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dxyrc"]
 size = Vector3(1.0565796, 1.3873291, 0.009277344)
@@ -39,3 +40,4 @@ shape = SubResource("BoxShape3D_bqfno")
 
 [node name="InteractionComponent" parent="trashCan" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_dxyrc")]
 object_ref = NodePath("..")
+impact_se = ExtResource("3_bqfno")

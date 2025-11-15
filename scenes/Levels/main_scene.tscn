@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=48 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://7u77yvvruucx" path="res://scenes/Prefabs/speaker.tscn" id="16_tvj71"]
 [ext_resource type="PackedScene" uid="uid://dw0ehhoom4273" path="res://assets/models/objects/computer_keyboard.gltf" id="17_vfwtc"]
 [ext_resource type="PackedScene" uid="uid://d03wr4b6dacr3" path="res://assets/models/objects/computer_mouse.gltf" id="18_6sdv5"]
-[ext_resource type="PackedScene" uid="uid://dt7gnsfilvtr8" path="res://scenes/Prefabs/crumbled_paper.tscn" id="19_i25wh"]
 [ext_resource type="PackedScene" uid="uid://548dh6laqt3o" path="res://assets/models/objects/computer_screen.gltf" id="19_lnnwg"]
 [ext_resource type="FontFile" uid="uid://x2f512as3wp8" path="res://assets/Cinzel-VariableFont_wght.ttf" id="19_rd4j6"]
 [ext_resource type="PackedScene" uid="uid://ch0vmyl0nd7p0" path="res://scenes/Prefabs/InteractionObjects/leos_note.tscn" id="24_6sdv5"]
@@ -706,15 +705,6 @@ transform = Transform3D(0.9999999, 2.6077032e-08, -8.940697e-08, -3.7252903e-08,
 light_color = Color(1, 0.7372549, 0.2784314, 1)
 light_energy = 0.472
 omni_range = 0.75
-
-[node name="CrumbledPaper" parent="." instance=ExtResource("19_i25wh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0407643, 0.42084056, -7.4665093)
-
-[node name="CrumbledPaper2" parent="." instance=ExtResource("19_i25wh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0407643, 0.2906891, -7.4665093)
-
-[node name="CrumbledPaper3" parent="." instance=ExtResource("19_i25wh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1080685, 1.130727, -12.232155)
 
 [node name="LeosNoteStorage" type="Node3D" parent="."]
 transform = Transform3D(0.45890504, 0, -0.19850987, 0, 0.5, 0, 0.19850987, 0, 0.45890504, 2.9964442, 0.97404087, -3.7992098)

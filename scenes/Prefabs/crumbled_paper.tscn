@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt7gnsfilvtr8"]
+[gd_scene load_steps=6 format=3 uid="uid://dt7gnsfilvtr8"]
 
 [ext_resource type="PackedScene" uid="uid://dcr47x82op0b4" path="res://assets/models/objects/crumbled_paper.gltf" id="1_mcsty"]
 [ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="1_r5arp"]
+[ext_resource type="AudioStream" uid="uid://ceyphk4qait8n" path="res://assets/sounds/NoteSounds/PaperImpact.ogg" id="2_bwamv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5arp"]
 size = Vector3(0.064575195, 0.13604736, 0.18017578)
@@ -13,6 +14,10 @@ size = Vector3(0.078063965, 0.09863281, 0.05859375)
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_r5arp")]
 object_ref = NodePath("..")
+volume_primary_audio_player = -32.0
+volume_secondary_audio_player = -32.0
+impact_se = ExtResource("2_bwamv")
+contact_velocity_threshold = 0.25
 
 [node name="blockbench_export" parent="." instance=ExtResource("1_mcsty")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch0vmyl0nd7p0"]
+[gd_scene load_steps=8 format=3 uid="uid://ch0vmyl0nd7p0"]
 
 [ext_resource type="Texture2D" uid="uid://d02oq5k5cggsx" path="res://assets/textures/LeosNotes.png" id="1_b12c2"]
 [ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="2_8pxex"]
+[ext_resource type="AudioStream" uid="uid://ct1dhjmmobwtg" path="res://assets/sounds/NoteSounds/PaperPickUp.ogg" id="3_jatcy"]
+[ext_resource type="AudioStream" uid="uid://ccl4qf3nj2co1" path="res://assets/sounds/NoteSounds/PaperPutDown.ogg" id="4_cs2n4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oq28i"]
 
@@ -33,3 +35,5 @@ shape = SubResource("BoxShape3D_jsdai")
 object_ref = NodePath("..")
 interaction_type = 4
 note_content = "To set the right way,\\nthe Angel number\\nenter at the\\nfirst gate.\\n\\n\\n\\nSecond gate ->\\n\\n\\n\\nMy mind open like\\na seam.\\n\\nA path. A pull.\\n\\nThe CIS is the way.\\n\\nOlder than time."
+pick_up_se = ExtResource("3_jatcy")
+put_down_se = ExtResource("4_cs2n4")

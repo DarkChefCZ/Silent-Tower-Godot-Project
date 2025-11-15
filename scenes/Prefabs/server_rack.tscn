@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cet1xc5v62vq7"]
+[gd_scene load_steps=4 format=3 uid="uid://cet1xc5v62vq7"]
 
 [ext_resource type="PackedScene" uid="uid://ddqx2j78t08w0" path="res://assets/models/objects/server_rack.gltf" id="1_fvhvj"]
+[ext_resource type="AudioStream" uid="uid://cnulfqikgdw7p" path="res://assets/sounds/server-room-binaural-29072.mp3" id="2_7xbfv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xbfv"]
 size = Vector3(0.8779297, 2.0018005, 0.876709)
@@ -42,3 +43,10 @@ omni_range = 0.05
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9997711, 0)
 shape = SubResource("BoxShape3D_7xbfv")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4534634, -0.42445529)
+stream = ExtResource("2_7xbfv")
+volume_db = -38.0
+autoplay = true
+max_distance = 2.0
