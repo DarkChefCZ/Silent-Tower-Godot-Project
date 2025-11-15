@@ -32,4 +32,4 @@ shape = SubResource("BoxShape3D_jsdai")
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_8pxex")]
 object_ref = NodePath("..")
 interaction_type = 4
-note_content = "To set the right way,\\n\\nthe Angel number enter at the first gate.\\n\\nSecond gate ->\\n\\nMy mind open like a seam.\\n\\nA path. A pull.\\n\\nThe CIS is the way.\\n\\nOlder than time."
+note_content = "To set the right way,\\nthe Angel number\\nenter at the\\nfirst gate.\\n\\n\\n\\nSecond gate ->\\n\\n\\n\\nMy mind open like\\na seam.\\n\\nA path. A pull.\\n\\nThe CIS is the way.\\n\\nOlder than time."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=49 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -26,6 +26,10 @@
 [ext_resource type="FontFile" uid="uid://x2f512as3wp8" path="res://assets/Cinzel-VariableFont_wght.ttf" id="19_rd4j6"]
 [ext_resource type="PackedScene" uid="uid://ch0vmyl0nd7p0" path="res://scenes/Prefabs/InteractionObjects/leos_note.tscn" id="24_6sdv5"]
 [ext_resource type="Texture2D" uid="uid://jxw5sin4x7f2" path="res://assets/textures/AngelNumberPoster.png" id="25_lnnwg"]
+[ext_resource type="PackedScene" uid="uid://dtja6axpqhjrx" path="res://scenes/Prefabs/control_panel_podium_large.tscn" id="27_eowjx"]
+[ext_resource type="PackedScene" uid="uid://csajl22h5k625" path="res://scenes/Prefabs/InteractionObjects/medium_valve.tscn" id="28_dpcy4"]
+[ext_resource type="PackedScene" uid="uid://cw13m4hfkfmj2" path="res://scenes/Prefabs/panel_screen.tscn" id="29_spck2"]
+[ext_resource type="PackedScene" uid="uid://corw1bm4vi6uw" path="res://scenes/Prefabs/InteractionObjects/entire_heavy_switch.tscn" id="30_g7hd8"]
 
 [sub_resource type="Environment" id="Environment_ahxxq"]
 background_energy_multiplier = 0.0
@@ -125,7 +129,7 @@ uv1_scale = Vector3(30, 30, 30)
 material = ExtResource("2_fv5kg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fv5kg"]
-size = Vector3(1.4501953, 0.5004883, 1.7481384)
+size = Vector3(2.5314941, 0.5004883, 1.7481384)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i1o00"]
 size = Vector3(1.7001953, 1.6981201, 0.055603027)
@@ -174,10 +178,10 @@ transform = Transform3D(-4.371138e-08, 6.131915e-15, 0.99999976, 0.25854936, 0.9
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0.13819999, 8.236932, -48.69942)
 
 [node name="WeakLightPrefab" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
-transform = Transform3D(-4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0, 0, 1, 6.237348, 3.7059634, -41.849106)
+transform = Transform3D(-4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0, 0, 1, 6.237348, 3.7059634, -42.926765)
 
 [node name="WeakLightPrefab2" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
-transform = Transform3D(4.3711385e-08, -0.99999994, -8.742278e-08, -0.99999994, -4.3711385e-08, 0, -3.8213705e-15, 8.742277e-08, -1, -6.237, 3.706, -41.84868)
+transform = Transform3D(4.3711385e-08, -0.99999994, -8.742278e-08, -0.99999994, -4.3711385e-08, 0, -3.8213705e-15, 8.742277e-08, -1, -6.237, 3.706, -42.927)
 
 [node name="VoxelGI" type="VoxelGI" parent="WorldLigh&Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.700817, -33.93106)
@@ -267,7 +271,7 @@ mesh = SubResource("PlaneMesh_384xt")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floors/StaticBody3D2"]
-transform = Transform3D(9, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.24975586, -6.8930874)
+transform = Transform3D(9, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.24975586, -6.8930855)
 shape = SubResource("BoxShape3D_fv5kg")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="floors"]
@@ -722,3 +726,52 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 transform = Transform3D(-2.6226834e-08, -0.99999994, 4.371139e-08, 0, -4.3711385e-08, -1, 0.6, -4.3711385e-08, 1.9106855e-15, 6.3263097, 1.623424, -4.2534356)
 mesh = SubResource("PlaneMesh_5i8k7")
 surface_material_override/0 = SubResource("StandardMaterial3D_eowjx")
+
+[node name="ControlPanel1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5147507, 0.89643145, -28.52886)
+
+[node name="ControlPanelPodiumLarge" parent="ControlPanel1" instance=ExtResource("27_eowjx")]
+transform = Transform3D(-0.22435966, 0, -0.5683463, 0, 0.6, 0, 0.6630707, 0, -0.19230828, 1.5188868, -0.24675024, -1.1640987)
+
+[node name="Label3D" type="Label3D" parent="ControlPanel1/ControlPanelPodiumLarge"]
+transform = Transform3D(-1.4280431, 0, -0.038841188, 0, 1.6666665, 0, 0.04531476, 0, -1.6660504, 1.4585533, 1.3501424, -0.41212654)
+modulate = Color(0.28, 0.2436, 0.196, 1)
+text = "1"
+font = ExtResource("19_rd4j6")
+font_size = 48
+outline_size = 0
+
+[node name="SinFreqValve" parent="ControlPanel1" instance=ExtResource("28_dpcy4")]
+transform = Transform3D(0.2756374, -0.72547334, 0.6306444, 0, 0.656059, 0.75470954, -0.9612617, -0.20802617, 0.1808344, 1.4943249, 0.9319209, -1.4585686)
+
+[node name="SinAmpValve" parent="ControlPanel1" instance=ExtResource("28_dpcy4")]
+transform = Transform3D(0.2756374, -0.72547334, 0.6306444, 0, 0.656059, 0.75470954, -0.9612617, -0.20802617, 0.1808344, 1.6593153, 0.9319209, -1.9697113)
+
+[node name="SinFreqPanel" parent="ControlPanel1" instance=ExtResource("29_spck2")]
+transform = Transform3D(0.0549752, 0.08782962, 0.108460546, 0, 0.116571896, -0.09439806, -0.13956268, 0.034597006, 0.042723738, 1.714628, 0.73916316, -1.4009228)
+
+[node name="SinAmpPanel" parent="ControlPanel1" instance=ExtResource("29_spck2")]
+transform = Transform3D(0.05497519, 0.08782962, 0.108460546, 0, 0.116571896, -0.09439806, -0.13956267, 0.034597006, 0.042723738, 1.8893049, 0.7439308, -1.8699055)
+
+[node name="SinViewPanel" parent="ControlPanel1" instance=ExtResource("29_spck2")]
+transform = Transform3D(0.04951428, 0.18620689, 0.22994636, 0, 0.23314379, -0.18879612, -0.29588574, 0.031160342, 0.038479816, 1.2455375, 0.94113207, -0.83540726)
+
+[node name="LockInPanel1" parent="ControlPanel1" instance=ExtResource("30_g7hd8")]
+transform = Transform3D(-0.27563736, 0.6049414, -0.74704057, 0, 0.7771458, 0.6293203, 0.9612617, 0.17346418, -0.21421042, 1.183594, 0.88943744, -0.35455704)
+
+[node name="ControlPanel2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0022836, 0, -28.794458)
+
+[node name="ControlPanelPodiumLarge2" parent="ControlPanel2" instance=ExtResource("27_eowjx")]
+transform = Transform3D(-0.22442912, 0, 0.5683262, 0, 0.6, 0, -0.6630472, 0, -0.19236782, -0.031716347, 0.65, -0.8985424)
+
+[node name="Label3D" type="Label3D" parent="ControlPanel2/ControlPanelPodiumLarge2"]
+transform = Transform3D(-1.4280428, 0, -0.03884104, 0, 1.6666663, 0, 0.04531479, 0, -1.6660501, -1.4098244, 1.3501424, -0.40998363)
+modulate = Color(0.28, 0.2436, 0.196, 1)
+text = "2"
+font = ExtResource("19_rd4j6")
+font_size = 48
+outline_size = 0
+
+[node name="ControlPanel3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.727695)

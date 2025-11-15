@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw13m4hfkfmj2"]
+
+[ext_resource type="PackedScene" uid="uid://cenawgusjgb2w" path="res://assets/models/InteractionComponentsModels/panel_display.gltf" id="1_rfdsd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1uu3"]
+size = Vector3(1.748291, 0.18920898, 1)
+
+[node name="PanelScreen" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_rfdsd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00036621094, 0.09436035, 0)
+shape = SubResource("BoxShape3D_a1uu3")
