@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwumikv7rle3l"]
+
+[ext_resource type="PackedScene" uid="uid://cenawgusjgb2w" path="res://assets/models/InteractionComponentsModels/panel_display.gltf" id="1_5884n"]
+[ext_resource type="Script" uid="uid://xr8jfjp3bu5c" path="res://scripts/panel_screen_sin_update.gd" id="1_pf545"]
+[ext_resource type="Shader" uid="uid://2f6rcfjma8sp" path="res://shaders/sinGraph.gdshader" id="2_pf545"]
+[ext_resource type="Script" uid="uid://cqgafrcdv1yww" path="res://scripts/timeForSin.gd" id="3_ynml5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sp34s"]
+viewport_path = NodePath("blockbench_export/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyuc8"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_sp34s")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rfdsd"]
+size = Vector2(1.65, 0.9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4oecf"]
+shader = ExtResource("2_pf545")
+shader_parameter/time = 0.0
+shader_parameter/amplitude = 0.30000001099011997
+shader_parameter/frequency = 3.30000015349012
+shader_parameter/thickness = 0.01
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1uu3"]
+size = Vector3(1.748291, 0.18920898, 1)
+
+[node name="PanelScreen" type="StaticBody3D"]
+script = ExtResource("1_pf545")
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_5884n")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="blockbench_export"]
+transform = Transform3D(0.985858, 0, 0, 0, 1, 0, 0, 0, 0.97595096, 0, 0.13049671, 0)
+material_override = SubResource("StandardMaterial3D_qyuc8")
+mesh = SubResource("PlaneMesh_rfdsd")
+
+[node name="SubViewport" type="SubViewport" parent="blockbench_export"]
+disable_3d = true
+size = Vector2i(640, 360)
+
+[node name="ColorRect" type="ColorRect" parent="blockbench_export/SubViewport"]
+material = SubResource("ShaderMaterial_4oecf")
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_ynml5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00036621094, 0.09436035, 0)
+shape = SubResource("BoxShape3D_a1uu3")

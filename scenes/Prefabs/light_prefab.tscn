@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0x25cli0tq5c"]
+[gd_scene load_steps=4 format=3 uid="uid://b0x25cli0tq5c"]
 
 [ext_resource type="PackedScene" uid="uid://bahcrdr8wk6l7" path="res://assets/models/lights/led_ceiling_light_on.gltf" id="1_misey"]
+[ext_resource type="AudioStream" uid="uid://78cttde245k2" path="res://assets/sounds/lightHum.ogg" id="2_r6nhb"]
+[ext_resource type="AudioStream" uid="uid://eiue1jbl7x58" path="res://assets/sounds/LabLightOn.ogg" id="3_q4hxc"]
 
 [node name="LightPrefab" type="Node3D"]
 
@@ -107,3 +109,12 @@ light_energy = 0.1
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_r6nhb")
+volume_db = -18.0
+max_distance = 1000.0
+
+[node name="AudioStreamPlayerOn" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_q4hxc")
+volume_db = -5.0

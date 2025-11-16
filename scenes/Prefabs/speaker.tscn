@@ -11,4 +11,3 @@
 stream = ExtResource("2_dvexm")
 volume_db = -50.0
 pitch_scale = 0.9
-autoplay = true

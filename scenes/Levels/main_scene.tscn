@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=53 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -29,6 +29,10 @@
 [ext_resource type="PackedScene" uid="uid://csajl22h5k625" path="res://scenes/Prefabs/InteractionObjects/medium_valve.tscn" id="28_dpcy4"]
 [ext_resource type="PackedScene" uid="uid://cw13m4hfkfmj2" path="res://scenes/Prefabs/panel_screen.tscn" id="29_spck2"]
 [ext_resource type="PackedScene" uid="uid://corw1bm4vi6uw" path="res://scenes/Prefabs/InteractionObjects/entire_heavy_switch.tscn" id="30_g7hd8"]
+[ext_resource type="Script" uid="uid://cmgt2rgxq6qyl" path="res://scripts/GameDirector.gd" id="30_nds67"]
+[ext_resource type="AudioStream" uid="uid://daeiihiueox42" path="res://assets/sounds/VoiceLines/FirstPanelDone.wav" id="31_nds67"]
+[ext_resource type="PackedScene" uid="uid://dwumikv7rle3l" path="res://scenes/Prefabs/panel_screen_Sin_display.tscn" id="32_pcg2w"]
+[ext_resource type="Script" uid="uid://dsspkj630vune" path="res://scripts/panel_screen_calc.gd" id="32_xc1v6"]
 
 [sub_resource type="Environment" id="Environment_ahxxq"]
 background_energy_multiplier = 0.0
@@ -156,7 +160,27 @@ size = Vector3(0.2855835, 0.11035156, 0.40820313)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eowjx"]
 albedo_texture = ExtResource("25_lnnwg")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc1v6"]
+size = Vector3(13.373047, 2.2905884, 1.2011719)
+
 [node name="MainScene" type="Node3D"]
+
+[node name="GameDirectorNode" type="Node" parent="." node_paths=PackedStringArray("player", "intercom", "crossHighlight", "originalHighlight", "zeroControlPanelArea", "preControlPanelHighlight", "Speakers", "firstControlPanelArea", "firstControlPanelHighlight", "SwitchLockIn1", "ObjectsToDisable", "IndicationLight", "secondControlPanelHighlight")]
+script = ExtResource("30_nds67")
+player = NodePath("../Player")
+intercom = NodePath("../Intercom")
+crossHighlight = NodePath("../WorldLigh&Env/LightPrefab12")
+originalHighlight = NodePath("../WorldLigh&Env/LightPrefab10")
+zeroControlPanelArea = NodePath("../Triggers/Panel0TriggerArea")
+preControlPanelHighlight = NodePath("../WorldLigh&Env/LightPrefab13")
+Speakers = [NodePath("../Speakers/Speaker"), NodePath("../Speakers/Speaker2")]
+firstControlPanelArea = NodePath("../Triggers/Panel1TriggerArea")
+firstControlPanelHighlight = NodePath("../WorldLigh&Env/WeakLightPanel1")
+SwitchLockIn1 = NodePath("../ControlPanel1/LockInPanel1")
+ObjectsToDisable = [NodePath("../ControlPanel1/SinFreqValve"), NodePath("../ControlPanel1/SinAmpValve"), NodePath("../ControlPanel1/LockInPanel1")]
+IndicationLight = NodePath("../ControlPanel1/ControlPanelPodiumLarge/OmniLight3D")
+FirstPanelVoice = ExtResource("31_nds67")
+secondControlPanelHighlight = NodePath("../WorldLigh&Env/WeakLightPanel2")
 
 [node name="WorldLigh&Env" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.6593895)
@@ -176,10 +200,10 @@ transform = Transform3D(-4.371138e-08, 6.131915e-15, 0.99999976, 0.25854936, 0.9
 [node name="blockbench_export" parent="WorldLigh&Env" instance=ExtResource("2_dstxs")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0.13819999, 8.236932, -48.69942)
 
-[node name="WeakLightPrefab" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
+[node name="WeakLightPanel1" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
 transform = Transform3D(-4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0, 0, 1, 6.237348, 3.7059634, -42.926765)
 
-[node name="WeakLightPrefab2" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
+[node name="WeakLightPanel2" parent="WorldLigh&Env" instance=ExtResource("3_lm6eo")]
 transform = Transform3D(4.3711385e-08, -0.99999994, -8.742278e-08, -0.99999994, -4.3711385e-08, 0, -3.8213705e-15, 8.742277e-08, -1, -6.237, 3.706, -42.927)
 
 [node name="VoxelGI" type="VoxelGI" parent="WorldLigh&Env"]
@@ -731,6 +755,17 @@ font = ExtResource("19_rd4j6")
 font_size = 48
 outline_size = 0
 
+[node name="OmniLight3D" type="OmniLight3D" parent="ControlPanel1/ControlPanelPodiumLarge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4547462, 1.1771113, -0.40842438)
+light_color = Color(0.38037, 6.1366705e-07, 4.813075e-08, 1)
+light_energy = 0.45
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+distance_fade_enabled = true
+distance_fade_begin = 0.0
+omni_range = 0.138
+
 [node name="SinFreqValve" parent="ControlPanel1" instance=ExtResource("28_dpcy4")]
 transform = Transform3D(0.2756374, -0.72547334, 0.6306444, 0, 0.656059, 0.75470954, -0.9612617, -0.20802617, 0.1808344, 1.4943249, 0.9319209, -1.4585686)
 
@@ -743,11 +778,16 @@ transform = Transform3D(0.0549752, 0.08782962, 0.108460546, 0, 0.116571896, -0.0
 [node name="SinAmpPanel" parent="ControlPanel1" instance=ExtResource("29_spck2")]
 transform = Transform3D(0.05497519, 0.08782962, 0.108460546, 0, 0.116571896, -0.09439806, -0.13956267, 0.034597006, 0.042723738, 1.8893049, 0.7439308, -1.8699055)
 
-[node name="SinViewPanel" parent="ControlPanel1" instance=ExtResource("29_spck2")]
-transform = Transform3D(0.04951428, 0.18620689, 0.22994636, 0, 0.23314379, -0.18879612, -0.29588574, 0.031160342, 0.038479816, 1.2455375, 0.94113207, -0.83540726)
-
 [node name="LockInPanel1" parent="ControlPanel1" instance=ExtResource("30_g7hd8")]
 transform = Transform3D(-0.27563736, 0.6049414, -0.74704057, 0, 0.7771458, 0.6293203, 0.9612617, 0.17346418, -0.21421042, 1.183594, 0.88943744, -0.35455704)
+
+[node name="SinViewPanel" parent="ControlPanel1" instance=ExtResource("32_pcg2w")]
+transform = Transform3D(0.049514282, 0.18620688, 0.22994636, 0, 0.23314376, -0.18879612, -0.29588577, 0.031160338, 0.038479816, 1.2455375, 0.94113207, -0.83540726)
+
+[node name="CalculationNode1" type="Node" parent="ControlPanel1" node_paths=PackedStringArray("sinFreqPanel", "sinAmpPanel")]
+script = ExtResource("32_xc1v6")
+sinFreqPanel = NodePath("../SinFreqPanel")
+sinAmpPanel = NodePath("../SinAmpPanel")
 
 [node name="ControlPanel2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0022836, 0, -28.794458)
@@ -763,5 +803,50 @@ font = ExtResource("19_rd4j6")
 font_size = 48
 outline_size = 0
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="ControlPanel2/ControlPanelPodiumLarge2"]
+transform = Transform3D(-0.746333, 0, 0.6655727, 0, 1, 0, -0.6655727, 0, -0.746333, -1.4176102, 1.1766666, -0.4099102)
+light_color = Color(0.38037, 6.1366705e-07, 4.813075e-08, 1)
+light_energy = 0.45
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+distance_fade_enabled = true
+distance_fade_begin = 0.0
+omni_range = 0.138
+
 [node name="ControlPanel3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.727695)
+
+[node name="Triggers" type="Node3D" parent="."]
+
+[node name="Panel1TriggerArea" type="Area3D" parent="Triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.877344)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Panel1TriggerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0773565, 0.10058594)
+shape = SubResource("BoxShape3D_xc1v6")
+
+[node name="Panel0TriggerArea" type="Area3D" parent="Triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.309534)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Panel0TriggerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0773565, 0.10058594)
+shape = SubResource("BoxShape3D_xc1v6")
+
+[node name="Intercom" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.422856, -20.075417)
+volume_db = -18.0
+max_db = 0.212
+pitch_scale = 0.95
+max_distance = 750.0
+bus = &"IntercomReverb"
+
+[connection signal="SinAmp" from="ControlPanel1/CalculationNode1" to="GameDirectorNode" method="_on_calculation_node_1_sin_amp"]
+[connection signal="SinAmp" from="ControlPanel1/CalculationNode1" to="ControlPanel1/SinViewPanel" method="_on_calculation_node_1_sin_amp"]
+[connection signal="SinFreq" from="ControlPanel1/CalculationNode1" to="GameDirectorNode" method="_on_calculation_node_1_sin_freq"]
+[connection signal="SinFreq" from="ControlPanel1/CalculationNode1" to="ControlPanel1/SinViewPanel" method="_on_calculation_node_1_sin_freq"]
+[connection signal="body_entered" from="Triggers/Panel1TriggerArea" to="GameDirectorNode" method="_on_panel_1_trigger_area_body_entered"]
+[connection signal="body_entered" from="Triggers/Panel0TriggerArea" to="GameDirectorNode" method="_on_panel_0_trigger_area_body_entered"]
+[connection signal="finished" from="Intercom" to="GameDirectorNode" method="_on_intercom_finished"]

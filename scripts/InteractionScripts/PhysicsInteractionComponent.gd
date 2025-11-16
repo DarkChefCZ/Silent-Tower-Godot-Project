@@ -124,6 +124,7 @@ func _ready() -> void:
 			for node in nodes_that_switch_affects:
 				nodes_to_affect.append(get_tree().get_current_scene().find_child(str(node), true, false))
 			
+			await get_tree().process_frame
 			if rotate_on_x:
 				starting_rotation = object_ref.rotation.x
 			else:
@@ -197,7 +198,7 @@ func _process(delta: float) -> void:
 					if abs(object_ref.rotation.z - switch_target_rotation) < 0.1:
 						object_ref.rotation.z = switch_target_rotation
 						is_switch_snapping = false
-					percentage= (object_ref.rotation.z - starting_rotation) / (maxium_rotation - starting_rotation)
+					percentage = (object_ref.rotation.z - starting_rotation) / (maxium_rotation - starting_rotation)
 				
 				notify_nodes(percentage)
 			else:
@@ -220,7 +221,7 @@ func _process(delta: float) -> void:
 							secondary_audio_player.play()
 					# Update percentage for affected nodes as it snaps
 					var percentage: float = (object_ref.rotation.z - starting_rotation) / (maxium_rotation - starting_rotation)
-					notify_nodes(percentage)
+					notify_wheel_nodes(percentage)
 				elif has_stopped_wheel_interact and !is_interacting:
 					if wheel_done_se:
 						secondary_audio_player.volume_db = -8
@@ -365,7 +366,7 @@ func _input(event: InputEvent) -> void:
 					var max_wheel_rotation = maxium_rotation / 0.1
 					wheel_rotation = clamp(wheel_rotation, min_wheel_rotation, max_wheel_rotation)
 					
-					notify_nodes(percentage)
+					notify_wheel_nodes(percentage)
 
 
 func _default_interact() -> void:
@@ -398,9 +399,26 @@ func set_direction(_normal: Vector3) -> void:
 		is_front = false
 
 func notify_nodes(percentage: float) -> void:
+	var switch_name = get_parent().get_parent().get_parent().name
 	for node in nodes_to_affect:
 		if node and node.has_method("execute"):
-			node.call("execute", percentage)
+			if switch_name == "LockInPanel1":
+				node.call("execute", percentage, "FirstPanel")
+			elif switch_name == "LockInPanel2":
+				node.call("execute", percentage, "SecondPanel")
+			elif switch_name == "LockInPanel3":
+				node.call("execute", percentage, "ThirdPanel")
+		else:
+			push_error(str(node.name) + " doesn't have the 'execute' function, therefore the switch affects nothing" )
+
+func notify_wheel_nodes(percentage: float) -> void:
+	var wheel_name = get_parent().get_parent().name  # or get_node("../").name if script is nested deeper
+	for node in nodes_to_affect:
+		if node:
+			if wheel_name.begins_with("SinFreq"):
+				node.call("execute", percentage, "SinFreq")
+			elif wheel_name.begins_with("SinAmp"):
+				node.call("execute", percentage, "SinAmp")
 		else:
 			push_error(str(node.name) + " doesn't have the 'execute' function, therefore the switch affects nothing" )
 

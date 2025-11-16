@@ -25,4 +25,5 @@ interaction_type = 2
 volume_primary_audio_player = 0.0
 maxium_rotation = 140.0
 rotate_on_x = true
+nodes_that_switch_affects = Array[String](["GameDirectorNode"])
 switch_flip_se = ExtResource("3_r0qwu")

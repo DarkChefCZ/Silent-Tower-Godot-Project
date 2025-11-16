@@ -24,6 +24,7 @@ object_ref = NodePath("..")
 interaction_type = 3
 volume_primary_audio_player = -16.0
 maxium_rotation = 360.0
+nodes_that_switch_affects = Array[String](["CalculationNode1"])
 wheel_snap_interval_deg = 0.1
 sound_wheel_threshold_distance = 0.1
 wheel_turning_se = ExtResource("3_4quy1")

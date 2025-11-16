@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqc0wxfv1ifel"]
+[gd_scene load_steps=3 format=3 uid="uid://cqc0wxfv1ifel"]
 
 [ext_resource type="PackedScene" uid="uid://bahcrdr8wk6l7" path="res://assets/models/lights/led_ceiling_light_on.gltf" id="1_kl4qi"]
+[ext_resource type="AudioStream" uid="uid://eiue1jbl7x58" path="res://assets/sounds/LabLightOn.ogg" id="2_1n6t3"]
 
 [node name="WeakLightPrefab" type="Node3D"]
 
@@ -86,3 +87,8 @@ light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
 omni_range = 7.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2319589, 0)
+stream = ExtResource("2_1n6t3")
+volume_db = -5.0
