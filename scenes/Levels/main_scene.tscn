@@ -820,7 +820,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.727695)
 [node name="Triggers" type="Node3D" parent="."]
 
 [node name="Panel1TriggerArea" type="Area3D" parent="Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.877344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.787228)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Panel1TriggerArea"]
@@ -828,7 +828,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0773565, 0.10058594)
 shape = SubResource("BoxShape3D_xc1v6")
 
 [node name="Panel0TriggerArea" type="Area3D" parent="Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.309534)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.726035)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Panel0TriggerArea"]

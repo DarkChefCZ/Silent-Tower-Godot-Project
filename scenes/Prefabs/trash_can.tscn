@@ -40,4 +40,5 @@ shape = SubResource("BoxShape3D_bqfno")
 
 [node name="InteractionComponent" parent="trashCan" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_dxyrc")]
 object_ref = NodePath("..")
+volume_primary_audio_player = -32.0
 impact_se = ExtResource("3_bqfno")

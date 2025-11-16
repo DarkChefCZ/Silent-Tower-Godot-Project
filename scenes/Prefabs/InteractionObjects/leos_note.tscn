@@ -34,6 +34,8 @@ shape = SubResource("BoxShape3D_jsdai")
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_8pxex")]
 object_ref = NodePath("..")
 interaction_type = 4
+volume_primary_audio_player = -16.0
+volume_secondary_audio_player = -16.0
 note_content = "To set the right way,\\nthe Angel number\\nenter at the\\nfirst gate.\\n\\n\\n\\nSecond gate ->\\n\\n\\n\\nMy mind open like\\na seam.\\n\\nA path. A pull.\\n\\nThe CIS is the way.\\n\\nOlder than time."
 pick_up_se = ExtResource("3_jatcy")
 put_down_se = ExtResource("4_cs2n4")

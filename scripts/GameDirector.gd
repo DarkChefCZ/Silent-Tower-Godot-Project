@@ -59,18 +59,19 @@ func _process(delta: float) -> void:
 				resetting_switch = false
 	
 	
-	if firstPanelComplete == true:
-		firstPanelComplete = false
+	if firstPanelComplete == true and ic1.can_interact == false:
 		await get_tree().create_timer(0.2).timeout
 		intercom.stream = FirstPanelVoice
 		intercom.playing = true
-		
+		firstPanelComplete = false
 
 func _on_panel_0_trigger_area_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		preControlPanelHighlight.visible = true
 		preControlPanelHighlight.find_child("AudioStreamPlayerOn", true, true).playing = true
 		preControlPanelHighlight.find_child("AudioStreamPlayer3D", true, true).playing = true
+		crossHighlight.visible = true
+		crossHighlight.find_child("AudioStreamPlayer3D", true, true).playing = true
 		for speaker in Speakers:
 			speaker.find_child("AudioStreamPlayer3D", true, true).playing = true
 		zeroControlPanelArea.queue_free()
@@ -81,8 +82,7 @@ func _on_panel_1_trigger_area_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		for light in LightChildren1:
 			light.visible = true
-		crossHighlight.visible = true
-		crossHighlight.find_child("AudioStreamPlayer3D", true, true).playing = true
+		
 		firstControlPanelHighlight.find_child("AudioStreamPlayer3D", true, false).playing = true
 		firstControlPanelArea.queue_free()
 	else:
