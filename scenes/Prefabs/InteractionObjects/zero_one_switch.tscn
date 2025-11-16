@@ -22,6 +22,7 @@ shape = SubResource("BoxShape3D_25ohm")
 [node name="InteractionComponent" parent="true_false_switch" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_tix0x")]
 object_ref = NodePath("..")
 interaction_type = 2
+volume_primary_audio_player = 0.0
 maxium_rotation = 35.0
 rotate_on_x = true
 turn_on_if_zero_one_switch = true

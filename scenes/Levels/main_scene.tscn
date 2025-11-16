@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=54 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://daeiihiueox42" path="res://assets/sounds/VoiceLines/FirstPanelDone.wav" id="31_nds67"]
 [ext_resource type="PackedScene" uid="uid://dwumikv7rle3l" path="res://scenes/Prefabs/panel_screen_Sin_display.tscn" id="32_pcg2w"]
 [ext_resource type="Script" uid="uid://dsspkj630vune" path="res://scripts/panel_screen_calc.gd" id="32_xc1v6"]
+[ext_resource type="PackedScene" uid="uid://ccvaaxc8umqje" path="res://scenes/Prefabs/InteractionObjects/zero_one_switch.tscn" id="34_j4muj"]
 
 [sub_resource type="Environment" id="Environment_ahxxq"]
 background_energy_multiplier = 0.0
@@ -165,7 +166,7 @@ size = Vector3(13.373047, 2.2905884, 1.2011719)
 
 [node name="MainScene" type="Node3D"]
 
-[node name="GameDirectorNode" type="Node" parent="." node_paths=PackedStringArray("player", "intercom", "crossHighlight", "originalHighlight", "zeroControlPanelArea", "preControlPanelHighlight", "Speakers", "firstControlPanelArea", "firstControlPanelHighlight", "SwitchLockIn1", "ObjectsToDisable", "IndicationLight", "secondControlPanelHighlight")]
+[node name="GameDirectorNode" type="Node" parent="." node_paths=PackedStringArray("player", "intercom", "crossHighlight", "originalHighlight", "zeroControlPanelArea", "preControlPanelHighlight", "Speakers", "firstControlPanelArea", "firstControlPanelHighlight", "SwitchLockIn1", "ObjectsToDisable", "IndicationLight", "secondControlPanelHighlight", "ObjectsToDisableGroup")]
 script = ExtResource("30_nds67")
 player = NodePath("../Player")
 intercom = NodePath("../Intercom")
@@ -181,6 +182,7 @@ ObjectsToDisable = [NodePath("../ControlPanel1/SinFreqValve"), NodePath("../Cont
 IndicationLight = NodePath("../ControlPanel1/ControlPanelPodiumLarge/OmniLight3D")
 FirstPanelVoice = ExtResource("31_nds67")
 secondControlPanelHighlight = NodePath("../WorldLigh&Env/WeakLightPanel2")
+ObjectsToDisableGroup = NodePath("../ControlPanel2/switches")
 
 [node name="WorldLigh&Env" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.6593895)
@@ -813,6 +815,11 @@ shadow_bias = 0.0
 distance_fade_enabled = true
 distance_fade_begin = 0.0
 omni_range = 0.138
+
+[node name="switches" type="Node3D" parent="ControlPanel2"]
+
+[node name="zero_one_switch" parent="ControlPanel2/switches" instance=ExtResource("34_j4muj")]
+transform = Transform3D(0.3552185, 0.6305603, -0.69008243, 0.012709707, 0.73490095, 0.6780554, 0.93469685, -0.24962841, 0.2530361, -0.2124877, 1.840106, -1.8515434)
 
 [node name="ControlPanel3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.727695)

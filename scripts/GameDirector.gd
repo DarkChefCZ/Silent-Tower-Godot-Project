@@ -21,6 +21,7 @@ var time: float
 
 @export_group("SecondPanelLighting+Objects")
 @export var secondControlPanelHighlight: Node3D
+@export var ObjectsToDisableGroup: Node3D
 
 var ic1: Node
 var icontrol: Node
@@ -28,7 +29,9 @@ var freq_here: float = 0.0
 var amp_here: float = 0.0
 var resetting_switch: bool = false
 var LightChildren1
+
 var LightChildren2
+var secondPanelInteractionObjects
 
 var firstPanelComplete: bool = false
 
@@ -46,6 +49,10 @@ func _ready() -> void:
 			light.visible = false
 	for light in LightChildren2:
 			light.visible = false
+	
+	secondPanelInteractionObjects = ObjectsToDisableGroup.find_children("zero_one_switch*", "Node3D", true, true)
+	for object in secondPanelInteractionObjects:
+		object.find_child("InteractionComponent", true, true).can_interact = false
 
 func _process(delta: float) -> void:
 	if resetting_switch == true:
@@ -59,7 +66,7 @@ func _process(delta: float) -> void:
 				resetting_switch = false
 	
 	
-	if firstPanelComplete == true and ic1.can_interact == false:
+	if firstPanelComplete == true and ic1.can_interact == false and ic1.is_switch_snapping == false:
 		await get_tree().create_timer(0.2).timeout
 		intercom.stream = FirstPanelVoice
 		intercom.playing = true
