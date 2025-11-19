@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://der6eay4e0gi7"]
+
+[ext_resource type="PackedScene" uid="uid://cenawgusjgb2w" path="res://assets/models/InteractionComponentsModels/panel_display.gltf" id="1_7grhl"]
+[ext_resource type="FontFile" uid="uid://bnkxcaku5b01n" path="res://assets/PixelifySans-VariableFont_wght.ttf" id="2_4vlbw"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_q2cw2"]
+viewport_path = NodePath("blockbench_export/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tmbg"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_q2cw2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rfdsd"]
+size = Vector2(1.65, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1uu3"]
+size = Vector3(1.748291, 0.18920898, 1)
+
+[node name="PanelScreen_Status" type="StaticBody3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_7grhl")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13049671, 0)
+material_override = SubResource("StandardMaterial3D_2tmbg")
+mesh = SubResource("PlaneMesh_rfdsd")
+
+[node name="SubViewport" type="SubViewport" parent="blockbench_export"]
+size = Vector2i(640, 360)
+
+[node name="LineEdit" type="LineEdit" parent="blockbench_export/SubViewport"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4vlbw")
+theme_override_font_sizes/font_size = 68
+text = "< Wave not found >"
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="blockbench_export/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_4vlbw")
+theme_override_font_sizes/normal_font_size = 112
+text = "< Wave not
+found >"
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00036621094, 0.09436035, 0)
+shape = SubResource("BoxShape3D_a1uu3")

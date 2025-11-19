@@ -34,9 +34,19 @@ var time: float
 @export var SecondPanelVoice: AudioStreamWAV
 
 @export_group("ThirdPanelLighting+Objects")
-@export var thirdControlPanel: Node3D
+@export var SwitchLockIn0: Node3D
+@export var WeakLight0: Node3D
+@export var SwitchLockIn3: Node3D
+@export var ThirdPanelVoice: AudioStreamOggVorbis
+
+@export_group("Extra")
+@export var servers: Node3D
+@export var tables: Node3D
 
 var icontrol: Node
+var waveReady: bool = false
+
+var ic0: Node
 
 var ic1: Node
 var freq_here: float = 0.0
@@ -49,21 +59,38 @@ var ic2
 var secondPanelInteractionObjects
 var secondPanelSymbols
 
-var panelGoingUp: bool
+var SmallLightChildren
+var LightChildren0a
+var LightChildren0b
+var ic3
+
+var RaptureAudioPlayer
 
 signal firstPanelComplete
 signal secondPanelComplete
+signal endingSequence
 
 func _ready() -> void:
+	ic0 = SwitchLockIn0.find_child("InteractionComponent", true, true)
+	
 	ic1 = SwitchLockIn1.find_child("InteractionComponent", true, true)
 	icontrol = player.find_child("InteractionController", true, true)
 	
-	originalHighlight.find_child("AudioStreamPlayer3D", true, true).playing = true
+	originalHighlight.find_child("AudioStreamPlayer3D", true, true).playing = false
 	preControlPanelHighlight.visible = false
 	crossHighlight.visible = false
 	
+	SmallLightChildren = WeakLight0.find_children("*", "OmniLight3D", true, false)
+	LightChildren0a = originalHighlight.find_children("*", "OmniLight3D", true, false)
+	LightChildren0b = originalHighlight.find_children("*", "SpotLight3D", true, true)
 	LightChildren1 = firstControlPanelHighlight.find_children("*", "OmniLight3D", true, false)
 	LightChildren2 = secondControlPanelHighlight.find_children("*", "OmniLight3D", true, false)
+	for light in SmallLightChildren:
+			light.light_energy = 0.015
+	for light in LightChildren0a:
+			light.visible = false
+	for light in LightChildren0b:
+			light.visible = false
 	for light in LightChildren1:
 			light.visible = false
 	for light in LightChildren2:
@@ -79,31 +106,46 @@ func _ready() -> void:
 	Sound2Trigger.monitoring = false
 	
 	secondPanelSymbols = Panel_Screen_Symbols.find_children("*", "TextureRect", true, true)
+	
+	ic3 = SwitchLockIn3.find_child("InteractionComponent", true, true)
+	ic3.can_interact = false
 
 var t: float = 0.0
 func _process(delta: float) -> void:
 	
-	if panelGoingUp:
-		t += delta * 0.005
-		thirdControlPanel.position.y = lerp(thirdControlPanel.position.y, 0.0, t)
 	
 	if resetting_switch == true:
 		if ic1.rotate_on_x == true:
 			ic1.object_ref.rotation.x = lerp_angle(ic1.object_ref.rotation.x, ic1.starting_rotation, delta * ic1.switch_lerp_speed)
 			if abs(ic1.object_ref.rotation.x - ic1.starting_rotation) < 0.01:
+				ic1.object_ref.rotation.x = ic1.starting_rotation
 				resetting_switch = false
 		else:
 			ic1.object_ref.rotation.z = lerp_angle(ic1.object_ref.rotation.z, ic1.starting_rotation, delta * ic1.switch_lerp_speed)
 			if abs(ic1.object_ref.rotation.z - ic1.starting_rotation) < 0.01:
+				ic1.object_ref.rotation.z = ic1.starting_rotation
 				resetting_switch = false
 		
 		if ic2.rotate_on_x == true:
 			ic2.object_ref.rotation.x = lerp_angle(ic2.object_ref.rotation.x, ic2.starting_rotation, delta * ic2.switch_lerp_speed)
 			if abs(ic2.object_ref.rotation.x - ic2.starting_rotation) < 0.01:
+				ic2.object_ref.rotation.x = ic2.starting_rotation
 				resetting_switch = false
 		else:
 			ic2.object_ref.rotation.z = lerp_angle(ic2.object_ref.rotation.z, ic2.starting_rotation, delta * ic2.switch_lerp_speed)
 			if abs(ic2.object_ref.rotation.z - ic2.starting_rotation) < 0.01:
+				ic2.object_ref.rotation.z = ic2.starting_rotation
+				resetting_switch = false
+		
+		if ic3.rotate_on_x == true:
+			ic3.object_ref.rotation.x = lerp_angle(ic3.object_ref.rotation.x, ic3.starting_rotation, delta * ic3.switch_lerp_speed)
+			if abs(ic3.object_ref.rotation.x - ic3.starting_rotation) < 0.01:
+				ic3.object_ref.rotation.x = ic3.starting_rotation
+				resetting_switch = false
+		else:
+			ic3.object_ref.rotation.z = lerp_angle(ic3.object_ref.rotation.z, ic3.starting_rotation, delta * ic3.switch_lerp_speed)
+			if abs(ic3.object_ref.rotation.z - ic3.starting_rotation) < 0.01:
+				ic3.object_ref.rotation.z = ic3.starting_rotation
 				resetting_switch = false
 	
 	
@@ -133,7 +175,23 @@ func _on_panel_1_trigger_area_body_entered(body: Node3D) -> void:
 		return
 
 func execute(percentage, switchType) -> void:
-	if switchType == "FirstPanel":
+	if switchType == "ZeroPanel":
+		if percentage > 0.99:
+			icontrol.changeReticle(icontrol.default_reticle)
+			for light in SmallLightChildren:
+				light.visible = false
+			for light in LightChildren0a:
+				light.visible = true
+			for light in LightChildren0b:
+				light.visible = true
+			originalHighlight.find_child("AudioStreamPlayer3D", true, true).playing = true
+			
+			if originalHighlight.find_child("AudioStreamPlayerOn", true, true).playing == false:
+				originalHighlight.find_child("AudioStreamPlayerOn", true, true).playing = true
+			ic0.is_interacting = false
+			ic0.can_interact = false
+		
+	elif switchType == "FirstPanel":
 		if percentage > 0.99:
 			if amp_here == 0.3 and freq_here == 0.33:
 				for node in ObjectsToDisable:
@@ -162,6 +220,13 @@ func execute(percentage, switchType) -> void:
 			else:
 				if ic2.is_interacting == false and ic2.is_switch_snapping == false:
 					resetting_switch = true
+	elif switchType == "ThirdPanel":
+		if percentage > 0.99:
+			if waveReady:
+				emit_signal("endingSequence")
+			else:
+				if ic3.is_interacting == false and ic3.is_switch_snapping == false:
+					resetting_switch = true
 
 func _on_calculation_node_1_sin_amp(amp: float) -> void:
 	amp_here = amp
@@ -179,8 +244,23 @@ func _on_intercom_finished() -> void:
 		secondControlPanelHighlight.find_child("AudioStreamPlayer3D", true, false).playing = true
 		Sound2Trigger.monitoring = true
 	elif intercom.stream == SecondPanelVoice:
-		await get_tree().create_timer(1.0).timeout
-		panelGoingUp = true
+		ic3.can_interact = true
+		await get_tree().create_timer(1.75).timeout
+		ic0.primary_audio_player.playing = true
+		for light in LightChildren0a:
+			light.visible = false
+		for light in LightChildren0b:
+			light.visible = false
+		waveReady = true
+	elif intercom.stream == ThirdPanelVoice:
+		preControlPanelHighlight.queue_free()
+		firstControlPanelHighlight.queue_free()
+		secondControlPanelHighlight.queue_free()
+		servers.queue_free()
+		tables.queue_free()
+		for speaker in Speakers:
+			speaker.find_child("AudioStreamPlayer3D", true, true).playing = false
+			speaker.queue_free()
 
 
 func _on_first_panel_complete() -> void:
@@ -204,7 +284,6 @@ func _on_second_panel_complete() -> void:
 	await get_tree().create_timer(0.2).timeout
 	intercom.stream = SecondPanelVoice
 	intercom.playing = true
-	#ic3.can_interact = true
 
 
 func _on_heavy_switch_placement_area_body_exited(body: Node3D) -> void:
@@ -214,3 +293,9 @@ func _on_heavy_switch_placement_area_body_exited(body: Node3D) -> void:
 		SwitchLockIn2.find_child("HeavySwitch", true, false).visible = true
 		ic2.can_interact = true
 		InstallationArea.set_deferred("monitoring", false)
+
+
+func _on_ending_sequence() -> void:
+	await get_tree().create_timer(0.2).timeout
+	intercom.stream = ThirdPanelVoice
+	intercom.playing = true

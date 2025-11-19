@@ -412,7 +412,9 @@ func notify_nodes(percentage: float) -> void:
 	var zero_one_switch_name = get_parent().get_parent().name
 	for node in nodes_to_affect:
 		if node and node.has_method("execute"):
-			if switch_name == "LockInPanel1":
+			if switch_name == "LockInPanel0":
+				node.call("execute", percentage, "ZeroPanel")
+			elif switch_name == "LockInPanel1":
 				node.call("execute", percentage, "FirstPanel")
 			elif switch_name == "LockInPanel2":
 				node.call("execute", percentage, "SecondPanel")
