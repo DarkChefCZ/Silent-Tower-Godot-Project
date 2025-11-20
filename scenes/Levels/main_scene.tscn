@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=90 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Material" uid="uid://by58c4eirglv8" path="res://assets/materials/hazard_mat.tres" id="1_fv5kg"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bcbg76c1l65q7" path="res://scenes/Prefabs/trash_can.tscn" id="15_7p3oy"]
 [ext_resource type="PackedScene" uid="uid://bwf3ai0vblno8" path="res://scenes/Prefabs/nameplate.tscn" id="16_dpatr"]
 [ext_resource type="PackedScene" uid="uid://7u77yvvruucx" path="res://scenes/Prefabs/speaker.tscn" id="16_tvj71"]
+[ext_resource type="PackedScene" uid="uid://n7u1fwq7n26j" path="res://scenes/transition_screen.tscn" id="17_7v623"]
 [ext_resource type="PackedScene" uid="uid://dw0ehhoom4273" path="res://assets/models/objects/computer_keyboard.gltf" id="17_vfwtc"]
 [ext_resource type="PackedScene" uid="uid://d03wr4b6dacr3" path="res://assets/models/objects/computer_mouse.gltf" id="18_6sdv5"]
 [ext_resource type="PackedScene" uid="uid://548dh6laqt3o" path="res://assets/models/objects/computer_screen.gltf" id="19_lnnwg"]
@@ -134,8 +135,67 @@ shader_parameter/domain_warp_strength_3 = 0.3
 next_pass = SubResource("ShaderMaterial_ahxxq")
 uv1_scale = Vector3(30, 30, 30)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fm3vu"]
+render_priority = 0
+shader = ExtResource("2_384xt")
+shader_parameter/texture1_albedo = ExtResource("3_dstxs")
+shader_parameter/texture2_albedo = ExtResource("3_dstxs")
+shader_parameter/texture_scale = 4.01900018764262
+shader_parameter/noise_scale = 4.33500020265262
+shader_parameter/blend_sharpness = 5.0
+shader_parameter/uv_rotation = 81.250003859375
+shader_parameter/tile_offset = 2.10400009994
+shader_parameter/hash_multiplier = 0.1031
+shader_parameter/hash_offset = 33.33
+shader_parameter/noise_frequency_1 = 1.618
+shader_parameter/noise_frequency_2 = 2.414
+shader_parameter/noise_frequency_3 = 3.141
+shader_parameter/noise_strength_1 = 0.15
+shader_parameter/noise_strength_2 = 0.12
+shader_parameter/noise_strength_3 = 0.09
+shader_parameter/fbm_frequency_multiplier = 2.07
+shader_parameter/blend_threshold_low = 0.2
+shader_parameter/blend_threshold_high = 0.8
+shader_parameter/smoothing_intensity_1 = 0.02
+shader_parameter/smoothing_intensity_2 = 0.05
+shader_parameter/smoothing_intensity_3 = 0.1
+shader_parameter/weight_threshold = 0.001
+shader_parameter/weight_epsilon = 0.001
+shader_parameter/default_albedo = 0.5
+shader_parameter/default_roughness = 1.0
+shader_parameter/default_ao = 1.0
+shader_parameter/default_threshold = 0.1
+shader_parameter/texture_size_threshold = 4
+shader_parameter/tile_noise_scale_1 = 0.003
+shader_parameter/tile_noise_scale_2 = 0.007
+shader_parameter/tile_noise_scale_3 = 0.011
+shader_parameter/tile_randomness_range = 16.0
+shader_parameter/depth_scale = 0.1
+shader_parameter/hash_prime_1 = 12.9898
+shader_parameter/hash_prime_2 = 78.233
+shader_parameter/hash_offset_1 = 43758.547
+shader_parameter/hash_offset_2 = 28001.838
+shader_parameter/extra_hash_prime_1 = 7.13
+shader_parameter/extra_hash_prime_2 = 11.17
+shader_parameter/extra_hash_offset_1 = 127.1
+shader_parameter/extra_hash_offset_2 = 311.7
+shader_parameter/tile_sample_offset_1 = Vector2(0.31, 0.47)
+shader_parameter/tile_sample_offset_2 = Vector2(0.73, 0.19)
+shader_parameter/blend_smoothstep_low = 0.1
+shader_parameter/blend_smoothstep_high = 0.9
+shader_parameter/blend_variation_factor = 0.15
+shader_parameter/extra_offset_multiplier = 0.5
+shader_parameter/domain_warp_freq_1 = 1.3
+shader_parameter/domain_warp_freq_2 = 1.7
+shader_parameter/domain_warp_freq_3 = 2.1
+shader_parameter/domain_warp_freq_4 = 2.3
+shader_parameter/domain_warp_freq_5 = 4.7
+shader_parameter/domain_warp_freq_6 = 5.1
+shader_parameter/domain_warp_strength_2 = 0.6
+shader_parameter/domain_warp_strength_3 = 0.3
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hm6ji"]
-next_pass = SubResource("ShaderMaterial_ahxxq")
+next_pass = SubResource("ShaderMaterial_fm3vu")
 uv1_scale = Vector3(30, 30, 30)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_giinx"]
@@ -235,7 +295,10 @@ size = Vector3(1.491394, 1.9385986, 1.5888062)
 
 [node name="MainScene" type="Node3D"]
 
-[node name="GameDirectorNode" type="Node" parent="." node_paths=PackedStringArray("player", "intercom", "crossHighlight", "originalHighlight", "zeroControlPanelArea", "preControlPanelHighlight", "Speakers", "firstControlPanelArea", "firstControlPanelHighlight", "SwitchLockIn1", "ObjectsToDisable", "IndicationLight", "InstallationSound", "InstallationArea", "secondControlPanelHighlight", "SwitchLockIn2", "ObjectsToDisableGroup", "Sound2Trigger", "Sound2MetalStream", "Panel_Screen_Symbols", "IndicationLight2", "SwitchLockIn0", "WeakLight0", "SwitchLockIn3", "servers", "tables")]
+[node name="TransitionScreen" parent="." instance=ExtResource("17_7v623")]
+layer = 3
+
+[node name="GameDirectorNode" type="Node" parent="." node_paths=PackedStringArray("player", "intercom", "crossHighlight", "originalHighlight", "zeroControlPanelArea", "preControlPanelHighlight", "Speakers", "firstControlPanelArea", "firstControlPanelHighlight", "SwitchLockIn1", "ObjectsToDisable", "IndicationLight", "InstallationSound", "InstallationArea", "secondControlPanelHighlight", "SwitchLockIn2", "ObjectsToDisableGroup", "Sound2Trigger", "Sound2MetalStream", "Panel_Screen_Symbols", "IndicationLight2", "SwitchLockIn0", "WeakLight0", "SwitchLockIn3", "panelScreenStatus", "servers", "tables")]
 script = ExtResource("30_nds67")
 player = NodePath("../Player")
 intercom = NodePath("../Intercom")
@@ -264,6 +327,7 @@ SwitchLockIn0 = NodePath("../WorldLigh&Env/LockInPanel0")
 WeakLight0 = NodePath("../WorldLigh&Env/LockInPanel0/WeakLightPanel0")
 SwitchLockIn3 = NodePath("../ControlPanel3/LockInPanel3")
 ThirdPanelVoice = ExtResource("4_qbhkv")
+panelScreenStatus = NodePath("../ControlPanel3/PanelScreen_Status")
 servers = NodePath("../Servers")
 tables = NodePath("../Tables")
 
@@ -1032,7 +1096,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.2144759, -0.12845269, 0, 0.12845269, 0.
 [node name="Triggers" type="Node3D" parent="."]
 
 [node name="Panel0TriggerArea" type="Area3D" parent="Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.034467)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.117597)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Panel0TriggerArea"]
@@ -1040,7 +1104,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0773565, 0.10058594)
 shape = SubResource("BoxShape3D_xc1v6")
 
 [node name="Panel1TriggerArea" type="Area3D" parent="Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.801565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.21033)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Panel1TriggerArea"]

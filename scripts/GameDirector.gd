@@ -38,6 +38,7 @@ var time: float
 @export var WeakLight0: Node3D
 @export var SwitchLockIn3: Node3D
 @export var ThirdPanelVoice: AudioStreamOggVorbis
+@export var panelScreenStatus: StaticBody3D
 
 @export_group("Extra")
 @export var servers: Node3D
@@ -63,8 +64,7 @@ var SmallLightChildren
 var LightChildren0a
 var LightChildren0b
 var ic3
-
-var RaptureAudioPlayer
+var StatusScreen
 
 signal firstPanelComplete
 signal secondPanelComplete
@@ -109,6 +109,8 @@ func _ready() -> void:
 	
 	ic3 = SwitchLockIn3.find_child("InteractionComponent", true, true)
 	ic3.can_interact = false
+	
+	StatusScreen = panelScreenStatus.find_child("RichTextLabel", true, true)
 
 var t: float = 0.0
 func _process(delta: float) -> void:
@@ -216,6 +218,8 @@ func execute(percentage, switchType) -> void:
 				ic2.can_interact = false
 				icontrol.changeReticle(icontrol.default_reticle)
 				IndicationLight2.light_color = Color("#0a6100")
+				StatusScreen.text = "< Wave READY >"
+				StatusScreen.add_theme_color_override("default_color", Color("#00ff00"))
 				emit_signal("secondPanelComplete")
 			else:
 				if ic2.is_interacting == false and ic2.is_switch_snapping == false:

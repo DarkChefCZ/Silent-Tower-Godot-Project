@@ -1,0 +1,278 @@
+[gd_scene load_steps=19 format=3 uid="uid://by55glops6kb3"]
+
+[ext_resource type="PackedScene" uid="uid://b0x25cli0tq5c" path="res://scenes/Prefabs/light_prefab.tscn" id="1_towmw"]
+[ext_resource type="PackedScene" uid="uid://bs5hhakyd7ky7" path="res://assets/models/objects/wooden_cross.gltf" id="2_lars7"]
+[ext_resource type="Shader" uid="uid://56t6l55demno" path="res://assets/materials/no_repetition.gdshader" id="3_cbtn6"]
+[ext_resource type="Texture2D" uid="uid://j4mdl8e2ctmk" path="res://assets/textures/floor_concrete.png" id="4_gken0"]
+[ext_resource type="Shader" uid="uid://dwql2m0rf0qgy" path="res://shaders/playerEyesShaderV2.gdshader" id="5_cbtn6"]
+[ext_resource type="Texture2D" uid="uid://dmljgfgnn7gdu" path="res://assets/UITitleHolySignal.png" id="5_lars7"]
+[ext_resource type="FontFile" uid="uid://x2f512as3wp8" path="res://assets/Cinzel-VariableFont_wght.ttf" id="7_gken0"]
+[ext_resource type="PackedScene" uid="uid://n7u1fwq7n26j" path="res://scenes/transition_screen.tscn" id="9_ag6ye"]
+[ext_resource type="AudioStream" uid="uid://1boems3qxof" path="res://assets/music/Compliance - Holy Signal Main Menu ost.ogg" id="9_qrs31"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahxxq"]
+render_priority = 0
+shader = ExtResource("3_cbtn6")
+shader_parameter/texture1_albedo = ExtResource("4_gken0")
+shader_parameter/texture2_albedo = ExtResource("4_gken0")
+shader_parameter/texture_scale = 4.01900018764262
+shader_parameter/noise_scale = 4.33500020265262
+shader_parameter/blend_sharpness = 5.0
+shader_parameter/uv_rotation = 81.250003859375
+shader_parameter/tile_offset = 2.10400009994
+shader_parameter/hash_multiplier = 0.1031
+shader_parameter/hash_offset = 33.33
+shader_parameter/noise_frequency_1 = 1.618
+shader_parameter/noise_frequency_2 = 2.414
+shader_parameter/noise_frequency_3 = 3.141
+shader_parameter/noise_strength_1 = 0.15
+shader_parameter/noise_strength_2 = 0.12
+shader_parameter/noise_strength_3 = 0.09
+shader_parameter/fbm_frequency_multiplier = 2.07
+shader_parameter/blend_threshold_low = 0.2
+shader_parameter/blend_threshold_high = 0.8
+shader_parameter/smoothing_intensity_1 = 0.02
+shader_parameter/smoothing_intensity_2 = 0.05
+shader_parameter/smoothing_intensity_3 = 0.1
+shader_parameter/weight_threshold = 0.001
+shader_parameter/weight_epsilon = 0.001
+shader_parameter/default_albedo = 0.5
+shader_parameter/default_roughness = 1.0
+shader_parameter/default_ao = 1.0
+shader_parameter/default_threshold = 0.1
+shader_parameter/texture_size_threshold = 4
+shader_parameter/tile_noise_scale_1 = 0.003
+shader_parameter/tile_noise_scale_2 = 0.007
+shader_parameter/tile_noise_scale_3 = 0.011
+shader_parameter/tile_randomness_range = 16.0
+shader_parameter/depth_scale = 0.1
+shader_parameter/hash_prime_1 = 12.9898
+shader_parameter/hash_prime_2 = 78.233
+shader_parameter/hash_offset_1 = 43758.547
+shader_parameter/hash_offset_2 = 28001.838
+shader_parameter/extra_hash_prime_1 = 7.13
+shader_parameter/extra_hash_prime_2 = 11.17
+shader_parameter/extra_hash_offset_1 = 127.1
+shader_parameter/extra_hash_offset_2 = 311.7
+shader_parameter/tile_sample_offset_1 = Vector2(0.31, 0.47)
+shader_parameter/tile_sample_offset_2 = Vector2(0.73, 0.19)
+shader_parameter/blend_smoothstep_low = 0.1
+shader_parameter/blend_smoothstep_high = 0.9
+shader_parameter/blend_variation_factor = 0.15
+shader_parameter/extra_offset_multiplier = 0.5
+shader_parameter/domain_warp_freq_1 = 1.3
+shader_parameter/domain_warp_freq_2 = 1.7
+shader_parameter/domain_warp_freq_3 = 2.1
+shader_parameter/domain_warp_freq_4 = 2.3
+shader_parameter/domain_warp_freq_5 = 4.7
+shader_parameter/domain_warp_freq_6 = 5.1
+shader_parameter/domain_warp_strength_2 = 0.6
+shader_parameter/domain_warp_strength_3 = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlakc"]
+next_pass = SubResource("ShaderMaterial_ahxxq")
+uv1_scale = Vector3(30, 30, 30)
+
+[sub_resource type="Environment" id="Environment_qrs31"]
+background_energy_multiplier = 0.0
+ambient_light_source = 2
+ambient_light_energy = 0.0
+tonemap_mode = 3
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 0.0
+sdfgi_energy = 0.065
+glow_strength = 2.0
+fog_light_color = Color(0.61, 0.61, 0.61, 1)
+fog_light_energy = 0.0
+fog_density = 0.035
+fog_height = 60.0
+volumetric_fog_density = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gken0"]
+shader = ExtResource("5_cbtn6")
+shader_parameter/grain_intensity = 0.150000007125
+shader_parameter/min_lum = 0.400000019
+shader_parameter/max_lum = 0.6000000285
+shader_parameter/time_scale = 1.0
+shader_parameter/vignette_darkness = 0.0
+shader_parameter/vignette_outer_radius = 0.10000000149012
+shader_parameter/vignette_inner_radius = 0.0
+shader_parameter/scanline_intensity = 0.050000002375
+shader_parameter/barrel_distortion = 0.0050000002375
+shader_parameter/chromatic_aberration = 0.0
+shader_parameter/crt_vignette_power = 0.50000002375
+shader_parameter/pixel_resolution_x = 640
+shader_parameter/pixel_resolution_y = 480
+shader_parameter/enable_color_quantization = true
+shader_parameter/color_quant_steps = 36.000001615
+shader_parameter/warble_amount = 0.0
+shader_parameter/warble_speed = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gken0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlakc"]
+bg_color = Color(1, 1, 1, 0.18039216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gken0"]
+bg_color = Color(0.103743516, 0.10374353, 0.103743516, 0.20392157)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vlakc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrs31"]
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="PreviewScene" type="Node3D" parent="."]
+
+[node name="LightPrefab12" parent="PreviewScene" instance=ExtResource("1_towmw")]
+transform = Transform3D(-4.371138e-08, 6.131915e-15, 0.99999976, 0.25854936, 0.96599805, 1.130155e-08, -0.96599823, 0.25854927, -4.222511e-08, 0, 23.853329, -25.68145)
+
+[node name="blockbench_export" parent="PreviewScene" instance=ExtResource("2_lars7")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0.13819999, 8.236932, -32.862083)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="PreviewScene"]
+transform = Transform3D(1.9310168, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.785787, 27.359737, -33.263176)
+use_collision = true
+size = Vector3(20.039429, 57.11052, 0.38378906)
+material = SubResource("StandardMaterial3D_vlakc")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="PreviewScene"]
+transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -6.5208597, 27.359737, -17.554089)
+use_collision = true
+size = Vector3(40.204956, 57.11052, 0.38378906)
+material = SubResource("StandardMaterial3D_vlakc")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="PreviewScene"]
+transform = Transform3D(1.9310168, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.785787, -27.349485, -33.263176)
+use_collision = true
+size = Vector3(20.039429, 57.11052, 0.38378906)
+material = SubResource("StandardMaterial3D_vlakc")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="PreviewScene"]
+transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -6.5208597, -27.349485, -17.554089)
+use_collision = true
+size = Vector3(40.204956, 57.11052, 0.38378906)
+material = SubResource("StandardMaterial3D_vlakc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="PreviewScene"]
+environment = SubResource("Environment_qrs31")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.68708754, -0.18805137, 0.7018173, 0, 0.9659259, 0.25881907, -0.7265747, -0.17783134, 0.6636756, 5.396, 16.944, -17.014)
+fov = 66.5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="PSXEffects" type="ColorRect" parent="Camera3D/CanvasLayer"]
+top_level = true
+light_mask = 7
+visibility_layer = 7
+material = SubResource("ShaderMaterial_gken0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Camera3D"]
+layer = 2
+
+[node name="Control" type="Control" parent="Camera3D/CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Title" type="TextureRect" parent="Camera3D/CanvasLayer2/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.021000002
+anchor_top = 0.037
+anchor_right = 0.44000003
+anchor_bottom = 0.14400001
+offset_left = -0.3200035
+offset_top = 0.040000916
+offset_right = 0.19995117
+offset_bottom = -0.5200043
+texture = ExtResource("5_lars7")
+
+[node name="PlayButton" type="Button" parent="Camera3D/CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.021000002
+anchor_top = 0.37
+anchor_right = 0.17600001
+anchor_bottom = 0.45800003
+offset_left = 359.68
+offset_top = -3.100006
+offset_right = 658.07996
+offset_bottom = -0.14004517
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.7577006, 0.5827783, 0.169592, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_gken0")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gken0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vlakc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gken0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vlakc")
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="Camera3D/CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.021000002
+anchor_top = 0.5
+anchor_right = 0.17600001
+anchor_bottom = 0.59900004
+offset_left = 359.68
+offset_top = 8.5
+offset_right = 658.07996
+offset_bottom = -0.42004395
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.7577006, 0.5827783, 0.169592, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_gken0")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gken0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vlakc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gken0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vlakc")
+text = "Quit"
+
+[node name="LineEdit" type="LineEdit" parent="Camera3D/CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -92.0
+offset_right = 597.0
+offset_bottom = -40.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9765908, 0.685773, 0.31436116, 1)
+theme_override_fonts/font = ExtResource("7_gken0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qrs31")
+text = "Made by AK-8 for Game Off 2025"
+
+[node name="TransitionScreen" parent="Camera3D" instance=ExtResource("9_ag6ye")]
+layer = 3
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D"]
+transform = Transform3D(1, 0, -5.9604645e-08, 1.4901161e-08, 1, 5.2154064e-08, 2.9802322e-08, -8.940697e-08, 1, 4.0575733, 2.6171513, -9.767346)
+stream = ExtResource("9_qrs31")
+volume_db = -20.0
+autoplay = true
+bus = &"Clean"
+
+[connection signal="button_down" from="Camera3D/CanvasLayer2/Control/PlayButton" to="Camera3D/TransitionScreen" method="_on_play_button_button_down"]
+[connection signal="button_down" from="Camera3D/CanvasLayer2/Control/QuitButton" to="Camera3D/TransitionScreen" method="_on_quit_button_button_down"]
