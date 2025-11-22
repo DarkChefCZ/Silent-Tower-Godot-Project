@@ -14,6 +14,9 @@ extends CharacterBody3D
 @export var CameraMinLookY = -40
 @export var BOB_FREQ = 3.0
 @export var BOB_AMP = 0.08
+@export_subgroup("Camera Shake")
+
+
 var t_bob = 0.0
 
 @export_group("Walk Settings")
@@ -50,8 +53,16 @@ var last_bob_direction: int = 0
 var footstep_ses: Array = []
 var can_move_camera: bool = true
 
+# --- Camera Shake ---
+
+
+
+# --- ---- ----
+
 # ---- ACTUAL CODE ----
 func _ready() -> void:
+	
+	
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -76,6 +87,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(CameraMinLookY), deg_to_rad(CameraMaxLookY))
 	else:
 		return
+
+
+
+
+
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

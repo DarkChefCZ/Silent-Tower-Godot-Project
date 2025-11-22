@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxtdw6cnwo56s"]
+
+[ext_resource type="FontFile" uid="uid://x2f512as3wp8" path="res://assets/Cinzel-VariableFont_wght.ttf" id="1_4uhtg"]
+[ext_resource type="Script" uid="uid://brnx6klanxy5a" path="res://scripts/credits_scene.gd" id="1_tvf5d"]
+[ext_resource type="AudioStream" uid="uid://dhjb6ciyxtll3" path="res://assets/music/amazing_grace_credits.ogg" id="2_ocoiw"]
+
+[node name="CreditsScene" type="Node3D" node_paths=PackedStringArray("text", "audio")]
+script = ExtResource("1_tvf5d")
+text = NodePath("Control/RichTextLabel")
+audio = NodePath("AudioStreamPlayer3D")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -61.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_4uhtg")
+theme_override_font_sizes/normal_font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ocoiw")
+volume_db = -35.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

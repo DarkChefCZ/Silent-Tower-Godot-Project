@@ -45,14 +45,15 @@ var time: float
 @export var tables: Node3D
 @export var collisionWallsEnd: StaticBody3D
 
+@export_group("ScareObjects")
+@export var ScareTrigger: Area3D
+@export var Angel: StaticBody3D
+
 var icontrol: Node
 var waveReady: bool = false
 var AngelMessages: RichTextLabel
 var MessageStream: AudioStreamPlayer3D
 var current_message_id := 0
-
-const MAN_SCREAM_REVERSE_SOUND = preload("uid://d1nt53ssbcow6")
-
 
 var ic0: Node
 
@@ -73,6 +74,10 @@ var LightChildren0b
 var ic3
 var StatusScreen
 
+var scareTriggered: bool = false
+var sfxScare
+var psxEffect
+
 signal displayMessage(message: String, messageDuration: float)
 signal firstPanelComplete
 signal secondPanelComplete
@@ -81,8 +86,9 @@ signal endingSequence
 const TURNONTHELIGHTS = preload("uid://dic8gteuhw31q")
 const LOOKATYOURNOTES = preload("uid://cx2w0p2txly50")
 const WRONG = preload("uid://5w2msbp3ylys")
-const OPENTHEFIRSTGATE = preload("uid://dfmslrda2lax5")
 const STEPFORWARD = preload("uid://dndfh6w8b6gle")
+const IMWITHYOU = preload("uid://dgsuxh4jmngkt")
+const OPENTHEGATES = preload("uid://bolecp4wpnuhc")
 
 
 func _ready() -> void:
@@ -132,10 +138,17 @@ func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
 	emit_signal("displayMessage", "< Turn on the lights >", 4.0)
 	
+	ScareTrigger.monitoring = false
+	sfxScare = Angel.find_child("AngelRawrStream", true, false)
+	psxEffect = player.find_child("PSXEffects", true, false)
 
 var t: float = 0.0
 func _process(delta: float) -> void:
-	
+	if scareTriggered:
+		Angel.position.z = lerp(Angel.position.z, -28.5, delta*1.5)
+		psxEffect.material.set_shader_parameter("color_quant_steps", 6)
+		if sfxScare.playing == false or abs(Angel.position.z - -28.5) < 0.35 or Angel.position.z >= player.position.z:
+			get_tree().change_scene_to_file("res://scenes/Levels/credits_scene.tscn")
 	
 	if resetting_switch == true:
 		emit_signal("displayMessage", "< Wrong >", 2.0)
@@ -192,7 +205,7 @@ func _on_panel_1_trigger_area_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		for light in LightChildren1:
 			light.visible = true
-		emit_signal("displayMessage", "< Open the first gate >", 3.0)
+		emit_signal("displayMessage", "< Open the gates >", 3.0)
 		firstControlPanelHighlight.find_child("AudioStreamPlayer3D", true, false).playing = true
 		firstControlPanelArea.queue_free()
 	else:
@@ -250,6 +263,7 @@ func execute(percentage, switchType) -> void:
 		if percentage > 0.99:
 			if waveReady:
 				player.EnableWalking = false
+				ic3.can_interact = false
 				emit_signal("endingSequence")
 			else:
 				if ic3.is_interacting == false and ic3.is_switch_snapping == false:
@@ -272,14 +286,14 @@ func _on_intercom_finished() -> void:
 		Sound2Trigger.monitoring = true
 	elif intercom.stream == SecondPanelVoice:
 		ic3.can_interact = true
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(1.0).timeout
 		
 		ic0.primary_audio_player.playing = true
 		for light in LightChildren0a:
 			light.visible = false
 		for light in LightChildren0b:
 			light.visible = false
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.3).timeout
 		emit_signal("displayMessage", "< I'm with you, my child >", 3.0)
 		waveReady = true
 	elif intercom.stream == ThirdPanelVoice:
@@ -291,15 +305,13 @@ func _on_intercom_finished() -> void:
 		for speaker in Speakers:
 			speaker.find_child("AudioStreamPlayer3D", true, true).playing = false
 			speaker.queue_free()
-		
+		StatusScreen.text = ""
 		player.EnableWalking = true
 		emit_signal("displayMessage", "< Step forward, chosen >", 3.0)
 		var collisionChildren = collisionWallsEnd.find_children("*", "CollisionShape3D", true , false)
 		for collider in collisionChildren:
 			collider.disabled = false
-		Sound2MetalStream.stream = MAN_SCREAM_REVERSE_SOUND
-		Sound2MetalStream.volume_db = 160.0
-		Sound2MetalStream.playing = true
+		ScareTrigger.monitoring = true
 
 
 func _on_first_panel_complete() -> void:
@@ -355,12 +367,14 @@ func _on_display_message(message: String, messageDuration: float) -> void:
 			MessageStream.stream = TURNONTHELIGHTS
 		"< Look at your notes, Leo >":
 			MessageStream.stream = LOOKATYOURNOTES
-		"< Wrong >":
-			MessageStream.stream = WRONG
-		"< Open the first gate >":
-			MessageStream.stream = OPENTHEFIRSTGATE
+		"< Open the gates >":
+			MessageStream.stream = OPENTHEGATES
+		"< I'm with you, my child >":
+			MessageStream.stream = IMWITHYOU
 		"< Step forward, chosen >":
 			MessageStream.stream = STEPFORWARD
+		"< Wrong >":
+			MessageStream.stream = WRONG
 	MessageStream.playing = true
 	
 	for i in message.length():
@@ -376,3 +390,11 @@ func _on_display_message(message: String, messageDuration: float) -> void:
 		return
 	
 	AngelMessages.text = ""
+
+
+func _on_scare_3_trigger_area_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		scareTriggered = true
+		
+		sfxScare.playing = true
+		ScareTrigger.queue_free()

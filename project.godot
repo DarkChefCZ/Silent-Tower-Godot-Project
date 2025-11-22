@@ -16,10 +16,6 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://svfkuri6pvwf"
 config/windows_native_icon="res://HolySignalIcon.ico"
 
-[autoload]
-
-Fade="*res://scripts/transition_screen.gd"
-
 [display]
 
 window/size/viewport_width=1920
