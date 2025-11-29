@@ -44,6 +44,7 @@ var time: float
 @export var servers: Node3D
 @export var tables: Node3D
 @export var collisionWallsEnd: StaticBody3D
+@export var TransitionScreen: CanvasLayer
 
 @export_group("ScareObjects")
 @export var ScareTrigger: Area3D
@@ -228,7 +229,9 @@ func execute(percentage, switchType) -> void:
 				originalHighlight.find_child("AudioStreamPlayerOn", true, true).playing = true
 			ic0.is_interacting = false
 			ic0.can_interact = false
-			get_tree().current_scene.find_child("TransitionScreen", true, false).queue_free()
+			if TransitionScreen:
+				TransitionScreen.queue_free()
+			
 		
 	elif switchType == "FirstPanel":
 		if percentage > 0.99:
@@ -248,7 +251,7 @@ func execute(percentage, switchType) -> void:
 			for symbol in secondPanelSymbols:
 				if symbol.visible == true:
 					symbols_on.append(symbol.name)
-			if "ArrowUp" in symbols_on and "TriangleDown" in symbols_on and "ArrowsCenter" in symbols_on:
+			if "ArrowUp" in symbols_on and "TriangleDown" in symbols_on and "ArrowsCenter" in symbols_on and symbols_on.size() == 3:
 				for object in secondPanelInteractionObjects:
 					object.find_child("InteractionComponent", true, true).is_interacting = false
 					object.find_child("InteractionComponent", true, true).can_interact = false
@@ -258,9 +261,11 @@ func execute(percentage, switchType) -> void:
 				StatusScreen.text = "< Wave READY >"
 				StatusScreen.add_theme_color_override("default_color", Color("#00ff00"))
 				emit_signal("secondPanelComplete")
+				
 			else:
 				if ic2.is_interacting == false and ic2.is_switch_snapping == false:
 					resetting_switch = true
+					symbols_on.clear()
 	elif switchType == "ThirdPanel":
 		if percentage > 0.99:
 			if waveReady:

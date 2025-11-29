@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dubjm7f27vcis"]
+[gd_scene load_steps=5 format=3 uid="uid://dubjm7f27vcis"]
 
 [ext_resource type="Script" uid="uid://ds4s3icnp3n5" path="res://scripts/beginning_scene.gd" id="1_q6hgt"]
 [ext_resource type="FontFile" uid="uid://x2f512as3wp8" path="res://assets/Cinzel-VariableFont_wght.ttf" id="1_u2ytp"]
 [ext_resource type="PackedScene" uid="uid://n7u1fwq7n26j" path="res://scenes/transition_screen.tscn" id="3_ej5jd"]
+[ext_resource type="AudioStream" uid="uid://cannqw58jpgdd" path="res://assets/sounds/typewriterKeyHit.ogg" id="4_emky1"]
 
-[node name="beginningScene" type="Node3D" node_paths=PackedStringArray("text", "transitionLayer")]
+[node name="beginningScene" type="Node3D" node_paths=PackedStringArray("text", "transitionLayer", "typingSound")]
 script = ExtResource("1_q6hgt")
 text = NodePath("Control/RichTextLabel")
 transitionLayer = NodePath("TransitionScreen")
+typingSound = NodePath("TypingSound")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -45,3 +47,7 @@ vertical_alignment = 1
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="TransitionScreen" parent="." instance=ExtResource("3_ej5jd")]
+
+[node name="TypingSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_emky1")
+volume_db = -35.0

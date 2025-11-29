@@ -2,6 +2,7 @@ extends Node3D
 
 @export var text: RichTextLabel
 @export var audio: AudioStreamPlayer3D
+@export var typingSound: AudioStreamPlayer3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,17 +10,17 @@ func _ready() -> void:
 	await get_tree().create_timer(3.5).timeout
 	audio.playing = true
 	await get_tree().create_timer(1.0).timeout
-	textShow("Holy Signal", 6.0)
+	textShow("Holy Signal")
 	await get_tree().create_timer(7.0).timeout
-	textShow("Game by AK-8", 6.0)
+	textShow("Game by AK-8")
 	await get_tree().create_timer(7.0).timeout
-	textShow("Made for Game Off 2025", 6.0)
+	textShow("Made for Game Off 2025")
 	await get_tree().create_timer(7.0).timeout
-	textShow("Special thanks to Buckleworth for help with development", 7.0)
+	textShow("Special thanks to Buckleworth for help with development")
 	await get_tree().create_timer(8.0).timeout
-	textShow("Thank you for playing", 6.0)
+	textShow("Thank you for playing")
 
-func textShow(message: String, messageDuration: float) -> void:
+func textShow(message: String) -> void:
 	
 	
 	text.text = ""
@@ -27,12 +28,8 @@ func textShow(message: String, messageDuration: float) -> void:
 	
 	for i in message.length():
 		text.text += message[i]
-		await get_tree().create_timer(0.01).timeout
-	
-	var timer = get_tree().create_timer(messageDuration)
-	await timer.timeout
-	
-	text.text = ""
+		typingSound.play()
+		await get_tree().create_timer(0.02).timeout
 
 
 func _on_audio_stream_player_3d_finished() -> void:

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt682yugedmro"]
+
+[ext_resource type="PackedScene" uid="uid://cwe6q7lwixj4f" path="res://assets/models/objects/CIS_mug.gltf" id="1_q1dsd"]
+[ext_resource type="PackedScene" uid="uid://cfjsb45l78wc8" path="res://scenes/Prefabs/InteractionComponents/interaction_component.tscn" id="2_jgdoi"]
+[ext_resource type="AudioStream" uid="uid://b6ktl87t3qc7j" path="res://assets/sounds/porcelainImpact.ogg" id="3_hdgq0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jgdoi"]
+size = Vector3(0.099609375, 0.11276245, 0.10058594)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hdgq0"]
+size = Vector3(0.057006836, 0.07775879, 0.022460938)
+
+[node name="CIS_mug" type="Node3D"]
+
+[node name="mug" type="RigidBody3D" parent="."]
+
+[node name="blockbench_export" parent="mug" instance=ExtResource("1_q1dsd")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mug"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05607605, 0)
+shape = SubResource("BoxShape3D_jgdoi")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="mug"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07855885, 0.051699296, 0)
+shape = SubResource("BoxShape3D_hdgq0")
+
+[node name="InteractionComponent" parent="mug" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_jgdoi")]
+object_ref = NodePath("..")
+volume_primary_audio_player = -20.0
+throw_strength = 10.0
+impact_se = ExtResource("3_hdgq0")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://dplc2ix5nnr8m"]
+[gd_scene load_steps=98 format=3 uid="uid://dplc2ix5nnr8m"]
 
 [ext_resource type="PackedScene" uid="uid://8wuuyqhvgo6v" path="res://scenes/Prefabs/player.tscn" id="1_7rf4f"]
 [ext_resource type="Shader" uid="uid://dwql2m0rf0qgy" path="res://shaders/playerEyesShaderV2.gdshader" id="1_7v623"]
@@ -38,6 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://daeiihiueox42" path="res://assets/sounds/VoiceLines/FirstPanelDone.wav" id="31_nds67"]
 [ext_resource type="PackedScene" uid="uid://dwumikv7rle3l" path="res://scenes/Prefabs/panel_screen_Sin_display.tscn" id="32_pcg2w"]
 [ext_resource type="Script" uid="uid://dsspkj630vune" path="res://scripts/panel_screen_calc.gd" id="32_xc1v6"]
+[ext_resource type="PackedScene" uid="uid://deiw7e55m2dk0" path="res://scenes/Prefabs/InteractionObjects/novaks_note.tscn" id="33_6fbjj"]
 [ext_resource type="PackedScene" uid="uid://ccvaaxc8umqje" path="res://scenes/Prefabs/InteractionObjects/zero_one_switch.tscn" id="34_j4muj"]
 [ext_resource type="AudioStream" uid="uid://dtlgdftcgts0a" path="res://assets/sounds/metalImpact.ogg" id="35_htquf"]
 [ext_resource type="Texture2D" uid="uid://csvki3o2wrcfq" path="res://assets/textures/WaveSymbols/Panel/WaveSymbolArrowDownPanel.png" id="35_k7cjl"]
@@ -58,6 +59,7 @@
 [ext_resource type="PackedScene" uid="uid://cbns6u0qlywns" path="res://scenes/Prefabs/control_panel_podium_small.tscn" id="51_eakkq"]
 [ext_resource type="PackedScene" uid="uid://der6eay4e0gi7" path="res://scenes/Prefabs/panel_screen_status.tscn" id="54_yw4ww"]
 [ext_resource type="PackedScene" uid="uid://t806rd6n8ctd" path="res://scenes/Prefabs/angel.tscn" id="57_rc7ik"]
+[ext_resource type="PackedScene" uid="uid://bt682yugedmro" path="res://scenes/Prefabs/cis_mug.tscn" id="59_fm3vu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6fbjj"]
 shader = ExtResource("1_7v623")
@@ -343,7 +345,7 @@ mouse_filter = 2
 [node name="TransitionScreen" parent="." instance=ExtResource("17_7v623")]
 layer = 3
 
-[node name="GameDirectorNode" type="Node" parent="." node_paths=PackedStringArray("player", "intercom", "crossHighlight", "originalHighlight", "zeroControlPanelArea", "preControlPanelHighlight", "Speakers", "firstControlPanelArea", "firstControlPanelHighlight", "SwitchLockIn1", "ObjectsToDisable", "IndicationLight", "InstallationSound", "InstallationArea", "secondControlPanelHighlight", "SwitchLockIn2", "ObjectsToDisableGroup", "Sound2Trigger", "Sound2MetalStream", "Panel_Screen_Symbols", "IndicationLight2", "SwitchLockIn0", "WeakLight0", "SwitchLockIn3", "panelScreenStatus", "servers", "tables", "collisionWallsEnd", "ScareTrigger", "Angel")]
+[node name="GameDirectorNode" type="Node" parent="." node_paths=PackedStringArray("player", "intercom", "crossHighlight", "originalHighlight", "zeroControlPanelArea", "preControlPanelHighlight", "Speakers", "firstControlPanelArea", "firstControlPanelHighlight", "SwitchLockIn1", "ObjectsToDisable", "IndicationLight", "InstallationSound", "InstallationArea", "secondControlPanelHighlight", "SwitchLockIn2", "ObjectsToDisableGroup", "Sound2Trigger", "Sound2MetalStream", "Panel_Screen_Symbols", "IndicationLight2", "SwitchLockIn0", "WeakLight0", "SwitchLockIn3", "panelScreenStatus", "servers", "tables", "collisionWallsEnd", "TransitionScreen", "ScareTrigger", "Angel")]
 script = ExtResource("30_nds67")
 player = NodePath("../Player")
 intercom = NodePath("../Intercom")
@@ -376,6 +378,7 @@ panelScreenStatus = NodePath("../ControlPanel3/PanelScreen_Status")
 servers = NodePath("../Servers")
 tables = NodePath("../Tables")
 collisionWallsEnd = NodePath("../CollisionWallsEnd")
+TransitionScreen = NodePath("../TransitionScreen")
 ScareTrigger = NodePath("../Triggers/Scare3TriggerArea")
 Angel = NodePath("../Angel")
 
@@ -944,6 +947,11 @@ transform = Transform3D(0.096618965, -0.18694167, -0.24767435, 7.197053e-07, 0.2
 
 [node name="UnsafeLeverNote" parent="UnsafeLeverNoteStorage" instance=ExtResource("28_qtam3")]
 
+[node name="NovaksNoteStorage" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.49922484, -0.027832344, 0, 0.027832344, 0.49922484, -2.5264368, 1.000403, -16.344765)
+
+[node name="NovaksNote" parent="NovaksNoteStorage" instance=ExtResource("33_6fbjj")]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.6226834e-08, -0.99999994, 4.371139e-08, 0, -4.3711385e-08, -1, 0.6, -4.3711385e-08, 1.9106855e-15, 6.3263097, 1.623424, -4.2534356)
 mesh = SubResource("PlaneMesh_5i8k7")
@@ -1211,6 +1219,9 @@ disabled = true
 
 [node name="Angel" parent="." instance=ExtResource("57_rc7ik")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.6612959, -33.906185)
+
+[node name="CIS_mug" parent="." instance=ExtResource("59_fm3vu")]
+transform = Transform3D(-0.54563403, 0, 0.8380236, 0, 1, 0, -0.8380236, 0, -0.54563403, 1.9123065, 0.96916425, -16.179893)
 
 [connection signal="displayMessage" from="GameDirectorNode" to="GameDirectorNode" method="_on_display_message"]
 [connection signal="endingSequence" from="GameDirectorNode" to="GameDirectorNode" method="_on_ending_sequence"]

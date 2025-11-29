@@ -2,6 +2,7 @@ extends Node3D
 
 @export var text: RichTextLabel
 @export var transitionLayer: CanvasLayer
+@export var typingSound: AudioStreamPlayer3D
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -27,6 +28,7 @@ func textShow(message: String) -> void:
 	
 	for i in message.length():
 		text.text += message[i]
-		await get_tree().create_timer(0.01).timeout
+		typingSound.play()
+		await get_tree().create_timer(0.02).timeout
 	
 	

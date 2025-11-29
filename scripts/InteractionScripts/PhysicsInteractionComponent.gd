@@ -110,9 +110,11 @@ func _ready() -> void:
 	primary_audio_player = AudioStreamPlayer3D.new()
 	add_child(primary_audio_player)
 	primary_audio_player.global_position = primary_audio_player.get_parent().get_parent().global_position
+	primary_audio_player.volume_db = volume_primary_audio_player
 	secondary_audio_player = AudioStreamPlayer3D.new()
 	add_child(secondary_audio_player)
 	secondary_audio_player.global_position = secondary_audio_player.get_parent().get_parent().global_position
+	secondary_audio_player.volume_db = volume_secondary_audio_player
 	
 	match interaction_type:
 		InteractionType.DEFAULT:
@@ -162,6 +164,7 @@ func _physics_process(delta: float) -> void:
 		InteractionType.DEFAULT:
 			if object_ref:
 				last_velocity = object_ref.linear_velocity
+				primary_audio_player.global_position = primary_audio_player.get_parent().get_parent().global_position
 		
 		
 	if object_ref and holding_note:
